@@ -1,0 +1,24 @@
+.navbar {
+    box-shadow: 0 4px 15px -3px gray;
+    padding: 0 50px;
+    height: 60px;
+}
+
+.navbar-collapse {
+    height: 100%;
+    margin-left: 20px;
+}
+
+.navbar-collapse > ul {
+    height: 100%;
+}
+
+a.nav-link{
+    height: 100%;
+    padding: 15px 0;
+    margin: 0 5px;
+}
+
+.active {
+    border-bottom: 4px solid #03a9f4;
+}

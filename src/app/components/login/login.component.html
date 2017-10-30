@@ -1,0 +1,28 @@
+<div class="wrapper container-fluid col-12" [ngStyle]="{'background-image':'url('+backgroundImageUrl+')'}">
+  <div class="card col-md-3 login-container">
+    <div class="card-body">
+      <div class="header-container">
+        <img class="img-fluid" [src]="logoIconUrl" alt="Keypoint Logo">
+      </div>
+      <div class="body-container">
+        <form action="">
+          <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
+            <input type="text" class="form-control" id="username" placeholder="Username">
+          </div>
+          <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </div>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+          </div>
+          <div class="form-group">
+              <button type="button" class="btn btn-primary login-submit-btn">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
