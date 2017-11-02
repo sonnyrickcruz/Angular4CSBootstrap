@@ -49,3 +49,11 @@
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
 }
+
+:host /deep/ .completer-input {
+    width: 100%;
+}
+
+:host /deep/ .completer-holder {
+    width: 100%;
+}

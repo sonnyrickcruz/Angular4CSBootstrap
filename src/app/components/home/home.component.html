@@ -1,12 +1,20 @@
 <div class="">
   <div class="content-index">
-    BES
+    <div class="card-body">
+      <div class="body-container">
+        <div class="input-group" id="bes">
+          <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" class="form-control" id="searchBox" placeholder="What skills are you looking for?"></ng2-completer>
+          <div class="input-group-addon">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="background-index">
+      <div class="gradient-div col-lg-12"></div>
+      <div class="white-div col-lg-12"></div>
+      <div class="blue-div col-lg-12"></div>
+      <div class="learning-path col-lg-12"></div>
+      <div class="master-it col-lg-12"></div>
+    </div>
   </div>
-  <div class="background-index">
-    <div class="gradient-div col-lg-12"></div>
-    <div class="white-div col-lg-12"></div>
-    <div class="blue-div col-lg-12"></div>
-    <div class="learning-path col-lg-12"></div>
-    <div class="master-it col-lg-12"></div>
-  </div>
-</div>

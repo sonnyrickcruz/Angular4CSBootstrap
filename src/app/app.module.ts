@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { Ng2CompleterModule } from "ng2-completer";
+import { SkillService } from "./services/skill.service";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -31,9 +33,12 @@ const appRoutes: Routes = [
   imports: [
     FormsModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    Ng2CompleterModule
   ],
-  providers: [],
+  providers: [
+    SkillService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
