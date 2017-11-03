@@ -1,3 +1,10 @@
-<div class="skill" *ngFor="let skill of skills">
-  {{skill.name}}
+<div class="col-sm-11 skills-grid">
+  <div class="card skill col-sm-3" *ngFor="let skill of skills">
+    <img class="card-img-top" [src]="getImageUrl(skill.name)" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{skill.name}}</h5>
+      <p class="card-text">{{skill.description}}</p>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>
 </div>

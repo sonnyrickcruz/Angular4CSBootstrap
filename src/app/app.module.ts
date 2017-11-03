@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { Ng2CompleterModule } from "ng2-completer";
 import { SkillService } from "./services/skill.service";
+import { RoleService } from "./services/role.service";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     Ng2CompleterModule
   ],
   providers: [
-    SkillService
+    SkillService,
+    RoleService
   ],
   bootstrap: [AppComponent]
 })

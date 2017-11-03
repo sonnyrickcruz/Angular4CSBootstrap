@@ -1,0 +1,16 @@
+.skill {
+    display: inline-block;
+    margin: 30px;
+    padding: 0;
+    box-shadow: 3px 5px 20px #bcc0c2;
+}
+
+.skill .card-text {
+    font-size: 14px;
+}
+
+.skills-grid {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
