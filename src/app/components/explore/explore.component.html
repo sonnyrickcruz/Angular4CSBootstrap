@@ -1,3 +1,7 @@
-<div class="card" style="width: 20rem;" *ngFor="let role of roles">
-  <img class="card-img-top" [src]="getImageUrl(role.roleName)" alt="Card image cap">
+<div class="row col-md-10 roles-grid">
+  <div class="col-md-3 my-4 px-4" *ngFor="let role of roles">
+    <div class="card roles col-sm-12">
+      <img class="card-img-top" [src]="getImageUrl(role.roleName)" alt="Card image cap">
+    </div>
+  </div>
 </div>

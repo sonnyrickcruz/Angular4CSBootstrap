@@ -1,0 +1,10 @@
+.roles {
+    padding: 0;
+    box-shadow: 3px 5px 20px #bcc0c2;
+    height: 100%;
+}
+
+.roles-grid {
+    text-align: center;
+    margin: 0 auto;
+}

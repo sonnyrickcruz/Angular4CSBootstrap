@@ -5,6 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { Ng2CompleterModule } from "ng2-completer";
 import { SkillService } from "./services/skill.service";
 import { RoleService } from "./services/role.service";
+import { UserService } from "./services/user.service";
+import { AuthService } from "./services/auth.service";
+import { NouisliderModule } from 'ng2-nouislider';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -35,11 +38,14 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    Ng2CompleterModule
+    Ng2CompleterModule,
+    NouisliderModule
   ],
   providers: [
     SkillService,
-    RoleService
+    RoleService,
+    UserService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

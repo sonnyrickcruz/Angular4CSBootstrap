@@ -1,8 +1,8 @@
 .skill {
-    display: inline-block;
-    margin: 30px;
     padding: 0;
     box-shadow: 3px 5px 20px #bcc0c2;
+    height: 100%;
+    cursor: pointer;
 }
 
 .skill .card-text {
@@ -11,6 +11,43 @@
 
 .skills-grid {
     text-align: center;
-    width: 100%;
-    margin: 0 auto;
+    margin: auto;
+}
+
+#skillModal .card {
+    padding: 0;
+}
+
+#skillModal > div > div > div > img {
+    max-height: 120px;
+    object-fit: cover;
+}
+
+#skillModal > div > div {
+    max-width: 80%;
+    margin: auto;
+    margin-top: 20%;
+}
+
+#skillModal > div > div > div > div {
+    border: 0;
+}
+
+#skillModal > div > div > div > div.card.col-sm-6.level {
+    padding: 20px;
+}
+:host /deep/ div.noUi-value {
+    display: none;
+}
+:host /deep/ .noUi-pips {
+    height: 20px;
+}
+
+:host /deep/ .noUi-marker {
+    height: 8px;
+    width: 1px;
+}
+
+:host /deep/ .noUi-target {
+    background-color: #d8dee1;
 }

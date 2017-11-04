@@ -1,10 +1,41 @@
-<div class="col-sm-11 skills-grid">
-  <div class="card skill col-sm-3" *ngFor="let skill of skills">
-    <img class="card-img-top" [src]="getImageUrl(skill.name)" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{skill.name}}</h5>
-      <p class="card-text">{{skill.description}}</p>
-      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+<div class="row col-md-10 skills-grid ">
+  <div class="col-lg-4 my-4 px-4" *ngFor="let skill of skills">
+    <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill($event)">
+      <img class="card-img-top" [src]="getImageUrl(skill.name)" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{skill.name}}</h5>
+        <p class="card-text">{{skill.description}}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="skillModal" tabindex="-1" role="dialog" *ngIf="skill != null">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="row">
+        <div class="card col-sm-6">
+          <img class="card-img-top" [src]="getImageUrl(skill.name)" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{skill.name}}</h5>
+            <p class="card-text">{{skill.description}}</p>
+          </div>
+        </div>
+        <div class="card col-sm-6 level">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="card-body">
+            <h5 class="card-title">Select your level of expertise</h5>
+            <nouislider [config]="someRange2config" [(ngModel)]="range" [disabled]="disabled" (ngModelChange)="getSkillLevel($event)"></nouislider>
+            <h6>{{skillLevel.label}}</h6>
+            <p class="card-text">{{skillLevel.description}}</p>
+            <button class="btn btn-primary" (click)="saveSkillLevel()">Save</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
