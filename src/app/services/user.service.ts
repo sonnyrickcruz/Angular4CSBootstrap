@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
-import { UserSkill } from '../models/user-skill';
+import { User, UserSkill } from '../models/employee';
+import { Skill } from '../models/skill';
+import { SkillService } from '../services/skill.service';
 
 @Injectable()
 export class UserService {
@@ -45,7 +46,7 @@ export class UserService {
     skillId: 8,
     skillProficiencyId: 3
   }]
-  constructor() { }
+  constructor(private _skillService:SkillService) { }
 
   getUserByUserName(username: string) {
     let userLogin;
@@ -55,6 +56,16 @@ export class UserService {
       }
     });
     return userLogin;
+  }
+
+  getUserSkills(username: string) {
+    let userSkills: Skill[] = [];
+    this.MOCK_USERS_SKILLS.forEach(skillInfo => {
+      if (skillInfo.username == username) {
+        userSkills.push(this._skillService.getSkillById(skillInfo.skillId));
+      }
+    });
+    return userSkills;
   }
 
   getUserSkillInfo(username: string, skillId:number) {

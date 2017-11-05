@@ -1,4 +1,10 @@
 <div class="row col-md-10 skills-grid ">
+  <div class="input-group search-skill mt-4 px-4">
+    <div class="input-group-addon">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+    <input type="text" class="form-control" id="searchString" [(ngModel)]="searchString" name="searchString" placeholder="Type the skill">
+  </div>
   <div class="col-lg-4 my-4 px-4" *ngFor="let skill of skills">
     <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill($event)">
       <img class="card-img-top" [src]="getImageUrl(skill.name)" alt="Card image cap">

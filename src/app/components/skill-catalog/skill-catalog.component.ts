@@ -1,16 +1,17 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Skill } from '../../models/skill';
-import { User } from '../../models/user';
+import { User, UserSkill } from '../../models/employee';
 import { SkillService } from '../../services/skill.service';
-import { SkillLevel } from '../../models/skill-level';
+import { SkillLevel } from '../../models/skill';
 import { UserService } from '../../services/user.service';
-import { UserSkill } from '../../models/user-skill';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-skill-catalog',
   templateUrl: './skill-catalog.component.html',
   styleUrls: ['./skill-catalog.component.css']
 })
+
 export class SkillCatalogComponent implements OnInit {
   skills: Skill[];
   skill: Skill;
@@ -35,13 +36,19 @@ export class SkillCatalogComponent implements OnInit {
   };
 
   constructor(private _skillService: SkillService,
-              private _userService: UserService) { }
+              private _userService: UserService,
+              private _router: Router) { }
 
   ngOnInit() {
-    this.skills = this._skillService.getSkills();
     this.skillLevels = this._skillService.getSkillLevels();
     this.getSkillLevel(this.range);
     this.user = this._userService.getUserByUserName('gian.liwanag');
+    console.log(this._router.url);
+    if (this._router.url == '/profile') {
+      this.skills = this._userService.getUserSkills(this.user.username);
+    } else if (this._router.url == '/skill-catalog') {
+      this.skills = this._skillService.getSkills();
+    }
   }
 
   getImageUrl(name: string) {

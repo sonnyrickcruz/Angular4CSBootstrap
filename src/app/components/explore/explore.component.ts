@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Role } from '../../models/role';
+import { Role } from '../../models/employee';
 import { RoleService } from '../../services/role.service';
 
 @Component({

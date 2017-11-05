@@ -15,13 +15,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { SkillCatalogComponent } from './components/skill-catalog/skill-catalog.component';
 import { ExploreComponent } from './components/explore/explore.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'skill-catalog', component: SkillCatalogComponent},
   {path: 'explore', component: ExploreComponent},
-  // {path: 'navbar', component: NavbarComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ]
 
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomeComponent,
     SkillCatalogComponent,
-    ExploreComponent
+    ExploreComponent,
+    ProfileComponent
   ],
   imports: [
     FormsModule,

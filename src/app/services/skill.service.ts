@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Skill } from '../models/skill';
-import { SkillLevel } from '../models/skill-level';
+import { SkillLevel } from '../models/skill';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -111,12 +111,14 @@ export class SkillService {
     return this.MOCK_SKILL_LEVELS;
   }
 
-  getSkillById(id: number) {
+  getSkillById(id: number): Skill {
+    let retrievedSkill:Skill;
     this.MOCK_SKILLS.forEach(skill => {
       if (skill.id === id) {
-        return skill;
+        retrievedSkill = skill;
       }
     });
+    return retrievedSkill;
   }
 
 }

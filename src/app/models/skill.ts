@@ -6,3 +6,9 @@ export class Skill {
     createdBy: string;
     description: string;
 }
+
+export class SkillLevel {
+    level: number;
+    label: string;
+    description: string;
+}
