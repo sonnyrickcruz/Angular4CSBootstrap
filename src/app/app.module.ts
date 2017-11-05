@@ -21,6 +21,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'skill-catalog', component: SkillCatalogComponent},
+  {path: 'skill-catalog/:q', component: SkillCatalogComponent},
   {path: 'explore', component: ExploreComponent},
   {path: 'profile', component: ProfileComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { CompleterService, CompleterData } from 'ng2-completer';
 import { AuthService } from '../../services/auth.service';
+import { SkillService } from '../../services/skill.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,24 +13,31 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   protected searchStr: string;
   protected dataService: CompleterData;
-  protected searchData = [
-    { color: 'red', value: '#f00' },
-    { color: 'green', value: '#0f0' },
-    { color: 'blue', value: '#00f' },
-    { color: 'cyan', value: '#0ff' },
-    { color: 'magenta', value: '#f0f' },
-    { color: 'yellow', value: '#ff0' },
-    { color: 'black', value: '#000' }
-  ];
   constructor(private completerService: CompleterService,
       private _authService:AuthService,
-      private _router: Router) {
-    this.dataService = completerService.local(this.searchData, 'color', 'color');
+      private _skillService: SkillService,
+      private _router: Router,
+      private _sanitizer: DomSanitizer) {
+    this.dataService = completerService.local(this._skillService.getSkills(), 'name', 'name');
   }
 
   ngOnInit() {
     if (!this._authService.isAuthenticated()) {
-      this._router.navigate(['/login']);
+      //this._router.navigate(['/login']);
+    }
+  }
+
+  videoUrl() {
+    return this._sanitizer.bypassSecurityTrustResourceUrl("assets/Videos/video-bg-udacity.mp4");
+  }
+
+  exploreImgUrl() {
+    return "assets/Images/creative-passionate-effective.png";
+  }
+
+  searchSkill() {
+    if (this.searchStr && this.searchStr.length > 0) {
+      this._router.navigate(['skill-catalog', this.searchStr]);
     }
   }
 
