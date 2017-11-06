@@ -29,24 +29,24 @@ export class UserService {
     username: "gian.liwanag",
     skillId: 1,
     skillProficiencyId: 2
-  },{
+  }, {
     username: "gian.liwanag",
     skillId: 2,
     skillProficiencyId: 4
-  },{
+  }, {
     username: "gian.liwanag",
     skillId: 5,
     skillProficiencyId: 3
-  },{
+  }, {
     username: "sonny.cruz",
     skillId: 5,
     skillProficiencyId: 3
-  },{
+  }, {
     username: "sonny.cruz",
     skillId: 8,
     skillProficiencyId: 3
   }]
-  constructor(private _skillService:SkillService) { }
+  constructor(private _skillService: SkillService) { }
 
   getUserByUserName(username: string) {
     let userLogin;
@@ -68,7 +68,7 @@ export class UserService {
     return userSkills;
   }
 
-  getUserSkillInfo(username: string, skillId:number) {
+  getUserSkillInfo(username: string, skillId: number) {
     let retrievedSkillInfo;
     this.MOCK_USERS_SKILLS.forEach(skillInfo => {
       if (skillInfo.username == username && skillInfo.skillId == skillId) {
@@ -79,21 +79,30 @@ export class UserService {
   }
 
   saveSkillLevel(skillId, level, username) {
-    let found = false;
-    this.MOCK_USERS_SKILLS.forEach(userSkill => {
-      if (!found && skillId == userSkill.skillId && username == userSkill.username) {
-        userSkill.skillProficiencyId = level;
-        found = true;
-        console.log("found");
+    let isSuccessful = false;
+    try {
+      let found = false;
+      this.MOCK_USERS_SKILLS.forEach(userSkill => {
+        if (!found && skillId == userSkill.skillId && username == userSkill.username) {
+          userSkill.skillProficiencyId = level;
+          found = true;
+          isSuccessful = true;
+          console.log("Skill Added.");
+        }
+      })
+      if (!found) {
+        console.log("adding");
+        this.MOCK_USERS_SKILLS.push({
+          username: username,
+          skillId: skillId,
+          skillProficiencyId: level
+        });
+        isSuccessful = true;
+        console.log("Skill Updated.");
       }
-    })
-    if (!found) {
-      console.log("adding");
-      this.MOCK_USERS_SKILLS.push({
-        username: username,
-        skillId: skillId,
-        skillProficiencyId: level
-      });
+    } catch (e) {
+      console.log("Skill not added due to some errors.")
     }
+    return isSuccessful;
   }
 }

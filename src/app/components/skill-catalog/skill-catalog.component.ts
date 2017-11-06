@@ -22,6 +22,11 @@ export class SkillCatalogComponent implements OnInit {
   skillLevels: SkillLevel[];
   user: User;
 
+  isSaveSkillSuccess;
+  saveSkillMessage;
+  updatedMessage = "Skill updated.";
+  errorMessage = "Error in adding skill.";
+
   range = 0;
   someRange2config: any = {
     behaviour: 'tap-drag',
@@ -44,7 +49,7 @@ export class SkillCatalogComponent implements OnInit {
     private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.searchStr = this._activatedRoute.snapshot.params['q'];
+    this.searchStr = this._activatedRoute.snapshot.params['q'];;
     this.skillLevels = this._skillService.getSkillLevels();
     this.getSkillLevel(this.range);
     this.user = this._userService.getUserByUserName('gian.liwanag');
@@ -64,6 +69,7 @@ export class SkillCatalogComponent implements OnInit {
   }
 
   getSkill(event) {
+    this.saveSkillMessage = '';
     let clickedSkillId = event.target.parentNode.id;
     let userSkillInfo;
     if (clickedSkillId) {
@@ -94,8 +100,14 @@ export class SkillCatalogComponent implements OnInit {
 
   saveSkillLevel() {
     if (this.skill.id && this.range != null) {
-      this._userService.saveSkillLevel(this.skill.id, this.range, this.user.username);
+      this.isSaveSkillSuccess = this._userService.saveSkillLevel(this.skill.id, this.range, this.user.username);
     }
+    if (this.isSaveSkillSuccess) {
+      this.saveSkillMessage = this.updatedMessage;
+    } else {
+      this.saveSkillMessage = this.errorMessage;
+    }
+    this.userSkills = this._userService.getUserSkills(this.user.username);
   }
 
   searchSkill(event) {

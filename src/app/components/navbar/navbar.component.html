@@ -1,8 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav *ngIf="showNav" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <button class="btn btn-light burger ml-1 d-xl-none d-lg-none" (click)="burgerClick()">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </button>
   <a class="navbar-brand" [routerLink]="['']">
     <img src="/assets/Logos/kplogo.png" width="auto" height="33" alt="">
   </a>
-
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" [routerLinkActive]="['active']">
@@ -15,8 +17,26 @@
         <a class="nav-link" [routerLink]="['explore']">Explore</a>
       </li>
     </ul>
-    <i class="fa fa-bell" aria-hidden="true"></i>
-    <!-- <img src="/assets/Images/Users/daniel-hardman.png" class="rounded-circle" alt="Sample image"> -->
-    <a class="nav-link" [routerLink]="['profile']">Profile</a>
+    <i class="fa fa-bell mx-2" aria-hidden="true"></i>
+    <a class="mx-2" [routerLink]="['profile']">
+      <img [src]="profileImgUrl" (error)="setDefaultPic()" class="rounded-circle img img-fluid position-absolute" height="40" width="40"
+        alt="profile picture">
+      <avatar [letter]="user.username.charAt(0).toUpperCase()" [displayType]="'circle'" size="40"></avatar>
+    </a>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle m-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item">Settings</a>
+        <a class="dropdown-item" (click)="logout()">Logout</a>
+      </div>
+    </div>
   </div>
+</nav>
+<nav class="nav side-nav-content flex-column d-xl-none d-lg-none sticky-top position-fixed mt-5 w-100 text-center" [ngClass]="{'d-none':triggerNav}">
+  <a class="nav-link d-block" href="#">Active</a>
+  <a class="nav-link d-block" href="#">Link</a>
+  <a class="nav-link d-block" href="#">Link</a>
+  <a class="nav-link disabled" href="#">Disabled</a>
 </nav>

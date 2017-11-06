@@ -16,6 +16,11 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
+  invalidInput: boolean;
+  message = "A";
+  messageEmpty = "Username or password is empty";
+  messageInvalid = "Incorrect username or password"
+
   constructor(private _userService: UserService,
     private _authService: AuthService,
     private _router: Router) { }
@@ -29,19 +34,24 @@ export class LoginComponent implements OnInit {
 
   login() {
     let user;
-    if (!this._authService.isAuthenticated()) {
-      if (this.username != null && this.username != '' && this.password == 'test') {
+    let isNotEmpty = this.username != null && this.username != '';
+    if (!this._authService.isAuthenticated() && isNotEmpty) {
+      if (this.password == 'test') {
         user = this._userService.getUserByUserName(this.username);
       }
       if (user != null) {
         console.log(JSON.stringify(user));
         this._authService.login(user);
-        console.log(this._authService.isAuthenticated());
       }
     }
     if (this._authService.isAuthenticated()) {
       this._router.navigate(['/home']);
+    } else if (!isNotEmpty) {
+      this.invalidInput = true;
+      this.message = this.messageEmpty;
+    } else {
+      this.invalidInput = true;
+      this.message = this.messageInvalid;
     }
   }
-
 }

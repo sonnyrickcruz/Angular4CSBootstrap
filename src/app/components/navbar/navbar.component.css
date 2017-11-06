@@ -22,3 +22,17 @@ a.nav-link{
 .active {
     border-bottom: 4px solid #03a9f4;
 }
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+.burger {
+    position: absolute;
+    left: 0;
+}
+
+.side-nav-content {
+    background-color: #ffffff;
+}

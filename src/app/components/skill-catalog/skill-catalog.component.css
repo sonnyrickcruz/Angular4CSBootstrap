@@ -52,6 +52,25 @@ div.input-group.search-skill > div {
 #skillModal > div > div > div > div.card.col-sm-6.level {
     padding: 20px;
 }
+
+.card-title {
+    font-size: 18px;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.close {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
 :host /deep/ div.noUi-value {
     display: none;
 }

@@ -19,6 +19,7 @@ export class AuthService {
   }
   logout(): void {
     AuthService._authenticated = false;
+    AuthService._user = null;
   }
 
 }

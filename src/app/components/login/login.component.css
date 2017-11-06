@@ -4,24 +4,10 @@
     background-repeat: repeat;
     background-position: 100% 100%;
     background-attachment: fixed;
-    text-align: center;
-}
-
-.login-container {
-    top: 20%;
-    margin: 0 auto;
 }
 
 .login-container {
     box-shadow: 3px 5px 15px #464646;
-}
-
-div.header-container {
-    margin: 30px 0;
-}
-
-.login-container .input-group {
-    margin: 10px 0;
 }
 
 .input-group-addon > i {
@@ -29,6 +15,5 @@ div.header-container {
 }
 
 .login-submit-btn {
-    margin: 10px 0;
     width: 100%;
 }

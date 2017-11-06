@@ -3,11 +3,12 @@
     <div class="input-group-addon">
       <i class="fa fa-search" aria-hidden="true"></i>
     </div>
-    <input type="text" class="form-control" id="searchString" [(ngModel)]="searchStr" (keyup)="searchSkill($event)" name="searchString" placeholder="Type the skill">
+    <input type="text" class="form-control" id="searchString" [(ngModel)]="searchStr" (keyup)="searchSkill($event)" name="searchString"
+      placeholder="Type the skill">
   </div>
   <div class="col-lg-12">
-      <a class="show-all-skills" (click)="getAllSkills()">All</a> 
-      <a class="show-all-skills" (click)="getMySkills()">My Skills</a>
+    <a class="show-all-skills" (click)="getAllSkills()">All</a>
+    <a class="show-all-skills" (click)="getMySkills()">My Skills</a>
   </div>
   <div class="col-lg-4 my-4 px-4" *ngFor="let skill of skills">
     <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill($event)">
@@ -26,23 +27,30 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="row">
+        <button type="button" class="close mt-2" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <div class="card col-sm-6">
-          <img class="card-img-top" [src]="getImageUrl(skill.name)" alt="Card image cap">
+          <img class="card-img-top d-none d-sm-block" [src]="getImageUrl(skill.name)" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{skill.name}}</h5>
             <p class="card-text">{{skill.description}}</p>
           </div>
         </div>
         <div class="card col-sm-6 level">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div class="card-body">
-            <h5 class="card-title">Select your level of expertise</h5>
-            <nouislider [config]="someRange2config" [(ngModel)]="range" [disabled]="disabled" (ngModelChange)="getSkillLevel($event)"></nouislider>
-            <h6>{{skillLevel.label}}</h6>
-            <p class="card-text">{{skillLevel.description}}</p>
-            <button class="btn btn-primary" (click)="saveSkillLevel()">Save</button>
+          <div class="card-body row p-1">
+            <h6 class="card-title mb-3 col-sm-12">Select your level of expertise</h6>
+            <nouislider class="col-sm-12" [config]="someRange2config" [(ngModel)]="range" [disabled]="disabled" (ngModelChange)="getSkillLevel($event)"></nouislider>
+            <h6 class="mt-2 col-sm-12">{{skillLevel.label}}</h6>
+            <p class="card-text col-sm-12">{{skillLevel.description}}</p>
+            <div class="col-lg-8 mb-2">
+              <div class="alert alert-success p-2 m-0" role="alert" [ngClass]="{'alert-danger': !isSaveSkillSuccess, 'invisible': saveSkillMessage == ''}">
+                {{saveSkillMessage}}
+              </div>
+            </div>
+            <div class="col-lg-4 text-right mb-2">
+              <button class="btn btn-primary p-2 m-0 w-100" (click)="saveSkillLevel()">Save</button>
+            </div>
           </div>
         </div>
       </div>

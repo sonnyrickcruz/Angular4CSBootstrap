@@ -8,6 +8,7 @@ import { RoleService } from "./services/role.service";
 import { UserService } from "./services/user.service";
 import { AuthService } from "./services/auth.service";
 import { NouisliderModule } from 'ng2-nouislider';
+import { AvatarModule } from "ng2-avatar";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     Ng2CompleterModule,
-    NouisliderModule
+    NouisliderModule,
+    AvatarModule.forRoot()
   ],
   providers: [
     SkillService,

@@ -27,6 +27,7 @@
     "font-awesome": "github:fortawesome/Font-Awesome",
     "jquery": "^3.2.1",
     "ng2-auto-complete": "^0.12.0",
+    "ng2-avatar": "^2.1.1",
     "ng2-completer": "^1.6.3",
     "ng2-ion-range-slider": "^1.0.3",
     "ng2-nouislider": "^1.7.4",
