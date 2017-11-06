@@ -34,9 +34,11 @@
     </div>
   </div>
 </nav>
-<nav class="nav side-nav-content flex-column d-xl-none d-lg-none sticky-top position-fixed mt-5 w-100 text-center" [ngClass]="{'d-none':triggerNav}">
-  <a class="nav-link d-block" href="#">Active</a>
-  <a class="nav-link d-block" href="#">Link</a>
-  <a class="nav-link d-block" href="#">Link</a>
-  <a class="nav-link disabled" href="#">Disabled</a>
+<nav class="nav side-nav-content flex-column d-xl-none d-lg-none mt-5 w-50 text-left" [ngClass]="{'d-none':!triggerNav}">
+  <a href="javascript:void(0)" class="closebtn" (click)="burgerClick()">&times;</a>
+  <a [routerLink]="['profile']" (click)="burgerClick()">Profile</a>
+  <a [routerLink]="['home']" (click)="burgerClick()">Home</a>
+  <a [routerLink]="['skill-catalog']" (click)="burgerClick()">Skill Catalog</a>
+  <a [routerLink]="['explore']" (click)="burgerClick()">Explore</a>
+  <a (click)="logout()" (click)="burgerClick()">Logout</a>
 </nav>

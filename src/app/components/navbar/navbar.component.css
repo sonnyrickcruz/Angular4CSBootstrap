@@ -33,6 +33,37 @@ a.nav-link{
     left: 0;
 }
 
+
+/* Side Nav */
 .side-nav-content {
-    background-color: #ffffff;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+
+.side-nav-content a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #4e4e4e;
+    display: block;
+    transition: 0.3s;
+}
+
+.side-nav-content a:hover {
+    color: #a5a4a4;
+}
+
+.side-nav-content .closebtn {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 36px;
+    margin-left: 50px;
 }

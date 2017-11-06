@@ -1,11 +1,13 @@
-<div class="col-lg-12 row profile-summary">
-  <div class="col-lg-1">
-    <img src="" alt="profile-pic" class="profile-pic">
-  </div>
-  <div class="col-lg-6">
-    <h4 class="name">Hi! I'm {{user.employee.name}}</h4>
-    <div class="role">a {{user.employee.role.roleName}} from</div>
-    <div class="business-group">{{user.employee.businessGroupObject.businessGroup}}</div>
+<div class="col-lg-12 row profile-summary text-center p-0 m-0">
+  <div class="col-lg-7 mx-auto mt-5">
+    <div class="col-lg-2 d-inline-block mx-auto align-middle pr-0">
+      <avatar class="mr-0" [letter]="user.username.charAt(0).toUpperCase()" [displayType]="'circle'"></avatar>
+    </div>
+    <div class="col-lg-6 d-inline-block mx-auto align-middle pl-0">
+      <h4 class="name">Hi! I'm {{user.employee.name}}</h4>
+      <div class="role">a {{user.employee.role.roleName}} from</div>
+      <div class="business-group">{{user.employee.businessGroupObject.businessGroup}}</div>
+    </div>
   </div>
   <div class="col-lg-8">
     <div class="col-lg-12">
@@ -25,8 +27,9 @@
       Top Skills
     </div>
     <div class="col-lg-12">
-      <div class="col-lg-12 skills">
-        <img src="" alt="top-skills-img" class="top-skills-img">
+      <div class="col-sm-4" *ngFor="let skill of sortedSkills">
+          {{skill.name}}
+          <img src="" alt="top-skills-img" class="top-skills-img">
       </div>
     </div>
   </div>

@@ -39,7 +39,7 @@ export class UserService {
     skillProficiencyId: 3
   }, {
     username: "sonny.cruz",
-    skillId: 5,
+    skillId: 4,
     skillProficiencyId: 3
   }, {
     username: "sonny.cruz",
@@ -66,6 +66,20 @@ export class UserService {
       }
     });
     return userSkills;
+  }
+
+  getUserSkillLevels(username: string) {
+    let userSkillLevels: UserSkill[] = [];
+    this.MOCK_USERS_SKILLS.forEach(userSkill => {
+      if (userSkill.username == username) {
+        userSkillLevels.push({
+          username: userSkill.username,
+          skillId: userSkill.skillId,
+          skillProficiencyId: userSkill.skillProficiencyId
+        })
+      }
+    })
+    return userSkillLevels;
   }
 
   getUserSkillInfo(username: string, skillId: number) {

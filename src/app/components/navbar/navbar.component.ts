@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   url: string;
   user: User;
   profileImgUrl;
-  triggerNav;
+  triggerNav = false;
   defaultImgUrl = "/assets/Images/transparent2.png";
   constructor(private _router: Router,
               private _auth: AuthService,
