@@ -1,6 +1,7 @@
 <div class="content-index">
   <div class="body-container">
-    <div class="row col-12 mx-auto">
+
+    <div class="row col-12 mx-auto p-5 mb-5 mx-5">
       <div class="col-lg-5 my-4">
         <div class="card search-card p-4">
           <div class="card-body">
@@ -28,37 +29,48 @@
         <div class="card border border-dark">
           <div class="embed-responsive embed-responsive-16by9 rounded">
             <video autoplay loop>
-                <source [src]="videoUrl()" type="video/mp4">
-              Your browser does not support the video tag.
+              <source [src]="videoUrl()" type="video/mp4"> Your browser does not support the video tag.
             </video>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="row col-12 mx-auto">
+
+    <div class="row col-12 mx-auto p-5 m-5">
       <div class="col-lg-6">
         <img [src]="exploreImgUrl()" class="rounded img-fluid" alt="be creative, passionate and effective.">
       </div>
-      <div class="col-lg-6">
-        <div>Growing your <span>skills</span></div>
-        <div>Widening your <span>horizons</span></div>
-        <p>There's always time to learn something new or delve deeper into a topic that really interests you.</p>
+      <div class="col-lg-4 m-auto skill-div">
+        <div class="skill-title">Growing your
+          <span>skills</span>
+          <br> Widening your
+          <span>horizons</span>
+        </div>
+        <p class="mt-3">There's always time to learn something new or delve deeper into a topic that really interests you.</p>
         <p>The opposites to improve your knowledge and expand your horizons are endless.</p>
-        <button class="btn btn-primary" [routerLink]="['/skill-catalog']">Explore</button>
+        <button class="btn btn-primary w-100" [routerLink]="['/skill-catalog']">Explore</button>
       </div>
     </div>
 
-    <div class="row col-12 mx-auto">
-      <div class="col-lg-6">
-        <img [src]="exploreImgUrl()" class="rounded img-fluid" alt="be creative, passionate and effective.">
+    <div class="row col-12 mx-auto p-5 m-5">
+      <div class="col-12 explore-div">
+        <div class="explore-text-title">
+          LEARNING
+          <span>PATH</span>
+        </div>
+        <div class="explore-text-body w-50">
+          <p>Confidently follow learning paths that help you develop the right skills in the right order to achieve your goals.</p>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <div>Growing your <span>skills</span></div>
-        <div>Widening your <span>horizons</span></div>
-        <p>There's always time to learn something new or delve deeper into a topic that really interests you.</p>
-        <p>The opposites to improve your knowledge and expand your horizons are endless.</p>
-        <button class="btn btn-primary" [routerLink]="['/skill-catalog']">Explore</button>
+      <div class="col-12">
+        <div class="row col-12 explore-img mx-auto p-0">
+          <div class="col-6 align-middle software-dev p-3 my-auto h-50"><h2>Software Development</h2></div>
+          <div class="col-3 align-middle artificial-intel"><h2>Artificial Intelligence</h2></div>
+          <div class="col-3 align-middle ux-design mt-auto"><h2>User Experience Design</h2></div>
+        </div>
+      </div>
+      <div class="col-12 text-right mt-5 px-4">
+          <button class="btn btn-primary" [routerLink]="['/explore']">View All</button>
       </div>
     </div>
   </div>

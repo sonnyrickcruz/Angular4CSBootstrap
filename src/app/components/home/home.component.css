@@ -40,7 +40,7 @@
 
 .learning-path {
     background: #333333;
-    height: 700px;
+    height: 800px;
 }
 
 .master-it {
@@ -114,3 +114,63 @@ video {
     background-size: cover;
     overflow: hidden;
 }
+
+.skill-title {
+    font-size: 30px;
+    line-height: 45px;
+}
+
+.skill-title span {
+    font-weight: bold;
+}
+
+.skill-div {
+    color: white;
+    line-height: 20px;
+}
+
+.explore-div {
+    color: white;
+}
+
+.explore-text-title {
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.explore-text-title span {
+    color: #03a9f4;
+}
+
+.explore-text-body {
+    line-height: 20px;
+    font-weight: lighter;
+}
+
+.software-dev {
+    background-image: linear-gradient(rgba(0, 217, 255, 0.5), rgba(38, 0, 255, 0.685)), url('../../../assets/Images/developer.png');
+    background-position: center center;
+    background-size: 100% auto;
+}
+
+.artificial-intel {
+    background-image:  linear-gradient(rgba(255, 0, 0, 0.5),rgba(255, 0, 102, 0.61)), url('../../../assets/Images/artificial intelligence.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 85%;
+}
+.ux-design {
+    background-image:  linear-gradient(rgba(0, 183, 255, 0.5),rgba(0, 102, 255, 0.849)), url('../../../assets/Images/ux- leaning path.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 85%;
+}
+
+.explore-img > div > h2 {
+    color: white;
+}
+
+.explore-img {
+    height: 25em;
+}
+
