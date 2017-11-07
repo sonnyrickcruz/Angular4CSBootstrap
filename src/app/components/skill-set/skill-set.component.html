@@ -1,0 +1,25 @@
+<div class="row col-12 p-0 m-0" *ngFor="let skillSet of skillSets">
+  <div class="col-3">
+    <div class="row col-12 p-0">
+      <div class="col-4 d-inline">
+        <img [src]="skillSet.img" [alt]="skillSet.name" class="img-fluid">
+      </div>
+      <div class="col-8 p-0">
+        <div class="col p-0">
+            {{skillSet.name}}
+        </div>
+        <div class="col p-0 progress">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="2" aria-valuemin="0" aria-valuemax="8"></div>
+        </div>
+        <div class="col p-0">
+            4/8 Skills
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="col-1 d-inline" *ngFor="let skillCategory of skillCategories">
+      <img [src]="skillCategory.img" [alt]="skillCategory.name" class="img-fluid">
+    </div>
+  </div>
+</div>

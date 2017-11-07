@@ -9,6 +9,7 @@ import { UserService } from "./services/user.service";
 import { AuthService } from "./services/auth.service";
 import { NouisliderModule } from 'ng2-nouislider';
 import { AvatarModule } from "ng2-avatar";
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -17,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SkillCatalogComponent } from './components/skill-catalog/skill-catalog.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SkillSetComponent } from './components/skill-set/skill-set.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'skill-catalog/:q', component: SkillCatalogComponent},
   {path: 'explore', component: ExploreComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'skill-set', component: SkillSetComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ]
 
@@ -36,7 +39,8 @@ const appRoutes: Routes = [
     HomeComponent,
     SkillCatalogComponent,
     ExploreComponent,
-    ProfileComponent
+    ProfileComponent,
+    SkillSetComponent
   ],
   imports: [
     FormsModule,
@@ -44,7 +48,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     Ng2CompleterModule,
     NouisliderModule,
-    AvatarModule.forRoot()
+    AvatarModule.forRoot(),
+    HttpModule
   ],
   providers: [
     SkillService,

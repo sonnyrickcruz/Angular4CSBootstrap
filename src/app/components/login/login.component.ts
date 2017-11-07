@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/employee';
+import { User, Employee } from '../../models/employee';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   
   username: string;
   password: string;
+
+  user:Employee;
 
   invalidInput: boolean;
   message = "A";
@@ -33,9 +35,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let user;
+    let user: User;
     let isNotEmpty = this.username != null && this.username != '';
     if (!this._authService.isAuthenticated() && isNotEmpty) {
+      this._userService.login(this.username, this.password).subscribe((data) => {
+        this.user = {
+            "name": data.name,
+            "nickName": data.nickName,
+            "role": data.role,
+            "businessGroupObject": data.businessGroupObject
+        }
+      });
+      console.log(JSON.stringify(this.user))
       if (this.password == 'test') {
         user = this._userService.getUserByUserName(this.username);
       }
@@ -45,7 +56,7 @@ export class LoginComponent implements OnInit {
       }
     }
     if (this._authService.isAuthenticated()) {
-      this._router.navigate(['/home']);
+      //this._router.navigate(['/home']);
     } else if (!isNotEmpty) {
       this.invalidInput = true;
       this.message = this.messageEmpty;

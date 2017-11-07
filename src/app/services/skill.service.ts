@@ -1,11 +1,70 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Skill } from '../models/skill';
-import { SkillLevel } from '../models/skill';
+import { Skill, SkillLevel, SkillSet, SkillCategory } from '../models/skill';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SkillService {
+  MOCK_SKILL_SET: SkillSet[] = [{
+    id: 1,
+    name: "User Research",
+    "desc": "Ablity to understand (by qualitative and / or quantitative research) how users behavve, how they think and what are their actions, thoughts, feelings, motivations and needs.",
+    img: "assets/Icons/01 User research.png"
+  },{
+    id: 2,
+    name: "Interactivity",
+    "desc": "Ability to design inituitive flows and interactions, achieving the easier way to go from point 'A' to point 'B' in each screen. Ability to descrive interface behavior as a result to others actions.",
+    img: "assets/Icons/02 Interactivity.png"
+  },{
+    id: 3,
+    name: "Visual Design",
+    "desc": "Ability to create polished and pleasing layouts, with well-crafted and refined screens. Ability to use colors, typography, shapes, etc. according to an specific purpose rather than intuitions or personal tastes.",
+    img: "assets/Icons/03 Visual Design.png"
+  },{
+    id: 4,
+    name: "Prototyping",
+    "desc": "Ability to build something (a rough interface, an intermediate interface or the final interface) to interact, test, and iterate. Ability to use prototyping tools or to code as a front-end developer.",
+    img: "assets/Icons/04 Prototyping.png"
+  }];
+  getSkillSets() {
+    return this.MOCK_SKILL_SET;
+  }
+  MOCK_SKILL_CATEGORY: SkillCategory[] = [{
+    id: 1,
+    name: "Stakeholder Research",
+    img: "assets/Icons/11 stakeholders.png"
+  },{
+    id: 1,
+    name: "Ecosystem Map",
+    img: "assets/Icons/12 ecosystem map.png"
+  },{
+    id: 1,
+    name: "Competitive Analysis",
+    img: "assets/Icons/13 Competitive Analysis.png"
+  },{
+    id: 1,
+    name: "Content Analysis",
+    img: "assets/Icons/14 Content Analysis.png"
+  },{
+    id: 1,
+    name: "Task Analysis",
+    img: "assets/Icons/12 Task Analysis.png"
+  },{
+    id: 1,
+    name: "User Serveys",
+    img: "assets/Icons/15 User surveys.png"
+  },{
+    id: 1,
+    name: "User Interviews",
+    img: "assets/Icons/16 user interviews.png"
+  },{
+    id: 1,
+    name: "Personas",
+    img: "assets/Icons/17 personas.png"
+  }];
+  getSkillCategories() {
+    return this.MOCK_SKILL_CATEGORY;
+  }
   MOCK_SKILLS: Skill[] = [
     {
       "id": 1,

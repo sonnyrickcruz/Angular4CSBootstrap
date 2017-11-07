@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 import { User, UserSkill } from '../models/employee';
 import { Skill } from '../models/skill';
 import { SkillService } from '../services/skill.service';
 
 @Injectable()
 export class UserService {
-
+  private _ldapURL = "http://172.26.54.34:8085/authentication/login";
   MOCK_USERS: User[] = [{
     "username": "gian.liwanag",
     "employee": {
@@ -46,7 +49,8 @@ export class UserService {
     skillId: 8,
     skillProficiencyId: 3
   }]
-  constructor(private _skillService: SkillService) { }
+  constructor(private _skillService: SkillService,
+              private _http: Http) { }
 
   getUserByUserName(username: string) {
     let userLogin;
@@ -118,5 +122,17 @@ export class UserService {
       console.log("Skill not added due to some errors.")
     }
     return isSuccessful;
+  }
+
+  login(username, password) {
+    return this._http.post(this._ldapURL, {
+      "username" : "sonny.cruz",
+      "password" : "cruzR1ck@@..//"
+    }).map(this._extractUsersData);
+  }
+
+  private _extractUsersData(res) {
+    let body = res.json();
+    return body || {};
   }
 }

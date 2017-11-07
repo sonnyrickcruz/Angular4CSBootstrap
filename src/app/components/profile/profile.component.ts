@@ -47,4 +47,11 @@ export class ProfileComponent implements OnInit {
     console.log(JSON.stringify(this.sortedSkills))
   }
 
+  getImageUrl(name: string) {
+    return "assets/Icons/" + name.replace(/\s+/g, '-').toLowerCase() + ".pngs";
+  }
+  test(event) {
+    console.log(event)
+    event.target.style.display="none";
+  }
 }

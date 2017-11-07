@@ -1,9 +1,9 @@
 <div class="col-lg-12 row profile-summary text-center p-0 m-0">
-  <div class="col-lg-7 mx-auto mt-5">
+  <div class="col-sm-7 mx-auto mt-5">
     <div class="col-lg-2 d-inline-block mx-auto align-middle pr-0">
       <avatar class="mr-0" [letter]="user.username.charAt(0).toUpperCase()" [displayType]="'circle'"></avatar>
     </div>
-    <div class="col-lg-6 d-inline-block mx-auto align-middle pl-0">
+    <div class="col-sm-6 d-inline-block mx-auto align-middle pl-0">
       <h4 class="name">Hi! I'm {{user.employee.name}}</h4>
       <div class="role">a {{user.employee.role.roleName}} from</div>
       <div class="business-group">{{user.employee.businessGroupObject.businessGroup}}</div>
@@ -22,19 +22,18 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-4 p-0">
     <div class="col-lg-12">
       Top Skills
     </div>
-    <div class="col-lg-12">
-      <div class="col-sm-4" *ngFor="let skill of sortedSkills">
-          {{skill.name}}
-          <img src="" alt="top-skills-img" class="top-skills-img">
-      </div>
+    <div class="col-xs-12 card-group">
+        <div class="skill-div mx-auto col-xs-4" *ngFor="let skill of sortedSkills">
+            <img [src]="getImageUrl(skill.name)" class="rounded" height="80px" width="80px" (error)="test($event)">
+            <avatar [name]="skill.name" [displayType]="'square'" size="80" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
+        </div>
     </div>
   </div>
-</div>
 
-<div class="col-lg-12 skills">
-  <app-skill-catalog></app-skill-catalog>
-</div>
+  <div class="col-lg-12 skills">
+    <app-skill-catalog></app-skill-catalog>
+  </div>

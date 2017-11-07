@@ -12,3 +12,16 @@ export class SkillLevel {
     label: string;
     description: string;
 }
+
+export class SkillSet {
+    id: number;
+    name: string;
+    desc: string;
+    img: string;
+}
+
+export class SkillCategory {
+    id: number;
+    name: string;
+    img: string;
+}
