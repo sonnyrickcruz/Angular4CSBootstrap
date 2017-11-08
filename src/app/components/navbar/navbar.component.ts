@@ -17,30 +17,31 @@ export class NavbarComponent implements OnInit {
   triggerNav = false;
   defaultImgUrl = "/assets/Images/transparent2.png";
   constructor(private _router: Router,
-              private _auth: AuthService,
-              private _userService: UserService) { }
+    private _auth: AuthService,
+    private _userService: UserService) { }
 
   ngOnInit() {
-    this._router.events.subscribe((url: any) => this.showNav = !url.url.includes("/login"));
-    console.log(JSON.stringify(this._auth.getUser()))
-    if (this._auth.isAuthenticated()) {
-      //this.user = this._auth.getUser();
+    this.user = this._auth.getUser();
+    if (this._auth.isAuthenticated() && this.user != null && this.user.username != null) {
+      this._router.events.subscribe((url: any) => this.showNav = !url.url.includes("/login"));
+      this.profileImgUrl = this.getImageUrl(this.user.username);
+    } else {
+      this._router.navigate(['/login']);
     }
-    this.user = this._userService.getUserByUserName('gian.liwanag');
-    this.profileImgUrl = this.getImageUrl(this.user.username);
   }
 
   setDefaultPic() {
     this.profileImgUrl = this.defaultImgUrl;
   }
-  
+
   getImageUrl(name: string) {
     return "assets/Images/Users/" + name.replace(/[\. ,:-]+/g, '-').toLowerCase() + ".png";
   }
 
   logout() {
+    console.log("LOGOUT")
     this._auth.logout();
-    this._router.navigate(['/home']);
+    this._router.navigate(['/login']);
   }
 
   burgerClick() {

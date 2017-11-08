@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Skill, SkillLevel, SkillSet, SkillCategory } from '../models/skill';
+import { Skill, SkillLevel, SkillSet, SkillCategory, UserSkillName } from '../models/skill';
+import { SessionStorageService } from 'ngx-webstorage';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -160,7 +161,7 @@ export class SkillService {
     label: "Guru",
     description: "I know everything about it and I don't need google"
   }]
-  constructor() { }
+  MOCK_USER_SKILLS: UserSkillName[] = [];
 
   getSkills() {
     return this.MOCK_SKILLS;
@@ -180,4 +181,76 @@ export class SkillService {
     return retrievedSkill;
   }
 
+  saveSkillLevel(skillId, level, username, skill) {
+    let isSuccessful = false;
+    try {
+      let userSkills: UserSkillName[] = this._sessionStorage.retrieve('userSkills');
+      let found = false;
+      if (userSkills == null) {
+        userSkills = [];
+      }
+      userSkills.forEach(userSkill => {
+        if (!found && skillId == userSkill.skill.id && username == userSkill.username) {
+          userSkill.skillProficiencyId = level;
+          found = true;
+          isSuccessful = true;
+          console.log("Skill Added.");
+        }
+      })
+      if (!found) {
+        console.log("adding");
+        userSkills.push({
+          username: username,
+          skill: skill,
+          skillProficiencyId: level
+        });
+        isSuccessful = true;
+        console.log("Skill Updated.");
+      }
+      this._sessionStorage.store("userSkills", userSkills)
+    } catch (e) {
+      console.log("Skill not added due to some errors.")
+    }
+    return isSuccessful;
+  }
+
+  getUserSkillLevels(username) {
+    let skills = [];
+    let userSkills = this._sessionStorage.retrieve('userSkills');
+    if (userSkills != null)
+    userSkills.forEach(userSkill => {
+      skills.push({
+        "id": userSkill.skill.id,
+        "groupId": userSkill.skill.groupId,
+        "name": userSkill.skill.name,
+        "createdDate": userSkill.skill.createdDate,
+        "createdBy": userSkill.skill.createdBy,
+        "description": userSkill.skill.description
+      })
+    })
+    return skills;
+  }
+
+  /*Call to Actual Service Starts here!*/
+  constructor(private _http: Http,
+              private _sessionStorage:SessionStorageService) { }
+
+  private _ldapURL = "http://172.26.54.34:8085/skill-search/";
+  private _addSkillUrl = "http://172.26.54.34:8085/resource-skill/";
+  retrieveSkillBySearchStr(searchStr) {
+    return this._http.get(this._ldapURL + searchStr).map(this._extractRetrievedData)
+  }
+  
+  saveSkillLevelService(skillId, level, username) {
+    return this._http.post(this._addSkillUrl, {
+        "username": username,
+        "skillId": skillId,
+        "skillProficiencyId" : level
+      }).map(this._extractRetrievedData);
+  }
+  
+  private _extractRetrievedData(res) {
+    let body = res.json();
+    return body || {};
+  }
 }

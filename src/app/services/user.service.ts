@@ -8,7 +8,6 @@ import { SkillService } from '../services/skill.service';
 
 @Injectable()
 export class UserService {
-  private _ldapURL = "http://172.26.54.34:8085/authentication/login";
   MOCK_USERS: User[] = [{
     "username": "gian.liwanag",
     "employee": {
@@ -49,8 +48,6 @@ export class UserService {
     skillId: 8,
     skillProficiencyId: 3
   }]
-  constructor(private _skillService: SkillService,
-              private _http: Http) { }
 
   getUserByUserName(username: string) {
     let userLogin;
@@ -96,7 +93,7 @@ export class UserService {
     return retrievedSkillInfo;
   }
 
-  saveSkillLevel(skillId, level, username) {
+  saveSkillLevel(skillId, level, username, skill) {
     let isSuccessful = false;
     try {
       let found = false;
@@ -124,12 +121,18 @@ export class UserService {
     return isSuccessful;
   }
 
+  /*Call to Actual Service Starts here!*/
+  constructor(private _skillService: SkillService,
+    private _http: Http) { }
+
+  private _ldapURL = "http://172.26.54.34:8085/authentication/login";
   login(username, password) {
     return this._http.post(this._ldapURL, {
-      "username" : "sonny.cruz",
-      "password" : "cruzR1ck@@..//"
+      "username": username,
+      "password": password
     }).map(this._extractUsersData);
   }
+
 
   private _extractUsersData(res) {
     let body = res.json();

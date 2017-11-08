@@ -1,25 +1,60 @@
-<div class="row col-md-10 skills-grid ">
-  <div class="input-group search-skill mt-4 px-4">
-    <div class="input-group-addon">
-      <i class="fa fa-search" aria-hidden="true"></i>
+<div class="skill-catalog col-12 p-0 m-0">
+
+  <div class="row col-md-10 skills-grid ">
+    <div class="input-group search-skill mt-4 px-4">
+      <div class="input-group-addon">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </div>
+      <input type="text" class="form-control" id="searchString" [(ngModel)]="searchStr" (keyup)="searchSkill($event)" name="searchString"
+        placeholder="Type the skill">
     </div>
-    <input type="text" class="form-control" id="searchString" [(ngModel)]="searchStr" (keyup)="searchSkill($event)" name="searchString"
-      placeholder="Type the skill">
-  </div>
-  <div class="col-lg-12">
-    <a class="show-all-skills" (click)="getAllSkills()">All</a>
-    <a class="show-all-skills" (click)="getMySkills()">My Skills</a>
-  </div>
-  <div class="col-lg-4 my-4 px-4" *ngFor="let skill of skills">
-    <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill($event)">
-      <img class="card-img-top" [src]="getImageUrl(skill.name)" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{skill.name}}</h5>
-        <p class="card-text">{{skill.description}}</p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    <div class="col-lg-12">
+      <a class="show-all-skills" (click)="getAllSkills()">All</a>
+      <a class="show-all-skills" (click)="getUserSkills()">My Skills</a>
+    </div>
+    <div class="col-lg-12 mt-4" *ngIf="skillPages.length > 1">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled" *ngIf="skillPages.length > 3">
+            <a class="page-link" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let skillPage of skillPages">
+            <a class="page-link" (click)="setSkillByPage(skillPage.page)">{{skillPage.page}}</a>
+          </li>
+          <li class="page-item" *ngIf="skillPages.length > 3">
+            <a class="page-link">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-lg-4 my-4 px-4" *ngFor="let skill of skills">
+      <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill($event)">
+        <avatar [email]="skill.name" [displayType]="'square'" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
+        <!-- <img class="card-img-top" [src]="getImageUrl(skill.name)" [alt]="skill.name"> -->
+        <div class="card-body">
+          <h5 class="card-title">{{skill.name}}</h5>
+          <p class="card-text">{{skill.description}}</p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
       </div>
     </div>
+    <div class="col-lg-12">
+      <nav aria-label="Page navigation example" *ngIf="skillPages.length > 1">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled" *ngIf="skillPages.length > 3">
+            <a class="page-link" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let skillPage of skillPages">
+            <a class="page-link" (click)="setSkillByPage(skillPage.page)">{{skillPage.page}}</a>
+          </li>
+          <li class="page-item" *ngIf="skillPages.length > 3">
+            <a class="page-link">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
+
 </div>
 
 <!-- Modal -->
@@ -31,7 +66,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <div class="card col-sm-6">
-          <img class="card-img-top d-none d-sm-block" [src]="getImageUrl(skill.name)" alt="Card image cap">
+          <!-- <img class="card-img-top d-none d-sm-block" [src]="getImageUrl(skill.name)" [alt]="skill.name"> -->
+          <avatar [email]="skill.name" [displayType]="'square'" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
           <div class="card-body">
             <h5 class="card-title">{{skill.name}}</h5>
             <p class="card-text">{{skill.description}}</p>

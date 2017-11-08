@@ -13,17 +13,19 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   protected searchStr: string;
   protected dataService: CompleterData;
-  constructor(private completerService: CompleterService,
-      private _authService:AuthService,
-      private _skillService: SkillService,
-      private _router: Router,
-      private _sanitizer: DomSanitizer) {
-    this.dataService = completerService.local(this._skillService.getSkills(), 'name', 'name');
+  searchStorage;
+  constructor(private _completerService: CompleterService,
+    private _authService: AuthService,
+    private _skillService: SkillService,
+    private _router: Router,
+    private _sanitizer: DomSanitizer) {
+    // init search
+    this.dataService = _completerService.local(this._skillService.getSkills(), 'name', 'name');
   }
 
   ngOnInit() {
     if (!this._authService.isAuthenticated()) {
-      //this._router.navigate(['/login']);
+      this._router.navigate(['/login']);
     }
   }
 
@@ -39,6 +41,21 @@ export class HomeComponent implements OnInit {
     if (this.searchStr && this.searchStr.length > 0) {
       this._router.navigate(['skill-catalog', this.searchStr]);
     }
+  }
+
+  getSkillBySearchStr() {
+    this.processResults()
+  }
+  
+  processResults() {
+    this._skillService.retrieveSkillBySearchStr(this.searchStr).subscribe((data) => {
+      if (this.searchStr.length == 1 && this.searchStr != ' ') {
+        this.searchStorage = data;
+        this.dataService = this._completerService.local(this.searchStorage, 'name', 'name');
+      }
+    }, (err) => {
+      //Don't do anything
+    })
   }
 
 }

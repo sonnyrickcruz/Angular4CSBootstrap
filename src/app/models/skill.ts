@@ -1,3 +1,8 @@
+export class SkillPage {
+    page: number;
+    skills: Skill[];
+}
+
 export class Skill {
     id: number;
     groupId: number;
@@ -24,4 +29,10 @@ export class SkillCategory {
     id: number;
     name: string;
     img: string;
+}
+
+export class UserSkillName {
+    username: string;
+    skillProficiencyId: number;
+    skill: Skill;
 }

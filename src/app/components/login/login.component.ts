@@ -10,13 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  backgroundImageUrl = "assets/Images/login-bg.png";
   logoIconUrl = "assets/Logos/kplogo.png"
-  
+
   username: string;
   password: string;
 
-  user:Employee;
+  employee: Employee;
 
   invalidInput: boolean;
   message = "A";
@@ -28,38 +27,51 @@ export class LoginComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit() {
-    console.log(this._authService.isAuthenticated());
     if (this._authService.isAuthenticated()) {
       this._router.navigate(['/home']);
     }
   }
 
   login() {
-    let user: User;
     let isNotEmpty = this.username != null && this.username != '';
     if (!this._authService.isAuthenticated() && isNotEmpty) {
-      this._userService.login(this.username, this.password).subscribe((data) => {
-        this.user = {
-            "name": data.name,
-            "nickName": data.nickName,
-            "role": data.role,
-            "businessGroupObject": data.businessGroupObject
-        }
-      });
-      console.log(JSON.stringify(this.user))
-      if (this.password == 'test') {
-        user = this._userService.getUserByUserName(this.username);
-      }
-      if (user != null) {
-        console.log(JSON.stringify(user));
-        this._authService.login(user);
-      }
-    }
-    if (this._authService.isAuthenticated()) {
-      //this._router.navigate(['/home']);
+      this._userService.login(this.username, this.password).subscribe(
+        (data) => {
+          this.employee = data;
+          this.processLoginResponse();
+        },
+        (err) => {
+          this.invalidInput = true;
+          if (err.status != "500") {
+            this.message = err._body;
+          } else {
+            this.message = err.statusText + ". Please try again later"
+            console.log(err)
+          }
+        });
     } else if (!isNotEmpty) {
       this.invalidInput = true;
       this.message = this.messageEmpty;
+    }
+    if (this.invalidInput) {
+      this.username = "";
+      this.password = "";
+    }
+  }
+
+  processLoginResponse() {
+    let user: User;
+    if (this.employee != null) {
+      user = {
+        "username": this.username,
+        "employee": this.employee
+      }
+      user = this._userService.getUserByUserName("sonny.cruz");
+      console.log(JSON.stringify(this.employee));
+      this._authService.login(user);
+    }
+    if (this._authService.getUser()) {
+      this._router.navigate(['/home']);
     } else {
       this.invalidInput = true;
       this.message = this.messageInvalid;
