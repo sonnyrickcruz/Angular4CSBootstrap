@@ -27,12 +27,24 @@ export class LoginComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit() {
+    /* let u = {
+      "username": "sonny.cruz",
+      "employee": {
+        "name": "Cruz, Sonny Rick B.",
+        "nickName": null,
+        "role": { "roleName": "Software Developer" },
+        "businessGroupObject": { "businessGroup": "Transportation and Logistics", "businessGroupCode": "T&L" }
+      }
+    }
+
+    this._authService.login(u) */
     if (this._authService.isAuthenticated()) {
       this._router.navigate(['/home']);
     }
   }
 
   login() {
+    this.invalidInput = false;
     let isNotEmpty = this.username != null && this.username != '';
     if (!this._authService.isAuthenticated() && isNotEmpty) {
       this._userService.login(this.username, this.password).subscribe(
@@ -41,11 +53,16 @@ export class LoginComponent implements OnInit {
           this.processLoginResponse();
         },
         (err) => {
+          console.log(err)
           this.invalidInput = true;
           if (err.status != "500") {
-            this.message = err._body;
+            if (typeof err._body != "object") {
+              this.message = err._body;
+            } else {
+              this.message = "System not available. Please try again later."
+            }
           } else {
-            this.message = err.statusText + ". Please try again later"
+            this.message = err.statusText + ". Please try again later."
             console.log(err)
           }
         });

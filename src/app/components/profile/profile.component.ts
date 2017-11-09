@@ -4,6 +4,7 @@ import { Skill } from '../../models/skill';
 import { UserService } from '../../services/user.service';
 import { SkillService } from '../../services/skill.service';
 import { AuthService } from '../../services/auth.service';
+import { ImageService } from '../../services/image.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,16 +17,18 @@ export class ProfileComponent implements OnInit {
   skillSets;
   showSkills = true;
   showSkillSet;
+  profileImgUrl;
   
   constructor(private _userService: UserService,
               private _skillService: SkillService,
-              private _authService: AuthService) { }
+              private _authService: AuthService,
+              private _imageservice: ImageService) { }
 
   ngOnInit() {
     this.user = this._authService.getUser();
     this.skillSets = this._skillService.getSkillSets();
-    console.log(JSON.stringify(this.user));
     this.sortSkills();
+    this.getProfilePic()
   }
 
   showSkillsDiv() {
@@ -39,10 +42,8 @@ export class ProfileComponent implements OnInit {
   }
 
   sortSkills() {
-    let userSkills = this._skillService.getSkillLevelsUser(this.user.username);
-    console.log(userSkills)
+    let userSkills = this._skillService.getSkillLevelsUser(this.user.username)
     let skillLevels = this._skillService.getSkillLevels().reverse();
-    console.log(skillLevels)
     let skillToAdd: Skill;
     let count = 0;
     this.sortedSkills = [];
@@ -69,8 +70,8 @@ export class ProfileComponent implements OnInit {
   getImageUrl(name: string) {
     return "assets/Icons/" + name.replace(/\s+/g, '-').toLowerCase() + ".pngs";
   }
-  test(event) {
-    console.log(event)
-    event.target.style.display="none";
+  
+  getProfilePic() {
+    this.profileImgUrl = this._imageservice.getUserImage(this.user.username);
   }
 }

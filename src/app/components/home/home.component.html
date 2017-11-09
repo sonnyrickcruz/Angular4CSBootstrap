@@ -10,7 +10,7 @@
               </p>
             </div>
             <div class="input-group search-skill">
-              <ng2-completer (keyup)="getSkillBySearchStr()" [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="1" class="form-control" id="searchBox"
+              <ng2-completer (keyup)="getSkillBySearchStr()" [(ngModel)]="searchStr" (change)="searchSkill()" [datasource]="dataService" [minSearchLength]="1" class="form-control" id="searchBox"
                 placeholder="What skills are you looking for?"></ng2-completer>
               <div class="input-group-addon" (click)="searchSkill()">
                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -80,42 +80,14 @@
       <div class="col-8">
         <div class="card">
           <div class="col-12">MOST IN-DEMAND <span><b>PROFESSIONAL</b> SKILLS</span></div>
-          <div class="col-12  row">
-            <div class="card col-3 p-0">
-              <img src="assets/Logos/JS.png" alt="" class="img-fluid">
-            </div>
-            <div class="card col-3 p-0">
-              Javascript
-            </div>
-            <div class="card col-3 p-0">
-              <img src="assets/Logos/JS.png" alt="" class="img-fluid">
-            </div>
-            <div class="card col-3 p-0">
-              Javascript
-            </div>
-            <div class="card col-3 p-0">
-              <img src="assets/Logos/JS.png" alt="" class="img-fluid">
-            </div>
-            <div class="card col-3 p-0">
-              Javascript
-            </div>
-            <div class="card col-3 p-0">
-              <img src="assets/Logos/JS.png" alt="" class="img-fluid">
-            </div>
-            <div class="card col-3 p-0">
-              Javascript
-            </div>
-            <div class="card col-3 p-0">
-              <img src="assets/Logos/JS.png" alt="" class="img-fluid">
-            </div>
-            <div class="card col-3 p-0">
-              Javascript
-            </div>
-            <div class="card col-3 p-0">
-              <img src="assets/Logos/JS.png" alt="" class="img-fluid">
-            </div>
-            <div class="card col-3 p-0">
-              Javascript
+          <div class="col-12 row">
+            <div class="col-lg-6 row mx-auto m-1 rounded border" *ngFor="let idemandSkill of indemandSkills">
+              <div class="col-5 p-0">
+                <img [src]="idemandSkill.img" alt="" class="img-fluid">
+              </div>
+              <div class="col-6 p-0 m-auto">
+                {{idemandSkill.name}}
+              </div>
             </div>
           </div>
           <div class="col-12 text-right px-4">

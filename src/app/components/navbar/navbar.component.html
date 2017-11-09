@@ -19,9 +19,11 @@
     </ul>
     <i class="fa fa-bell mx-2" aria-hidden="true"></i>
     <a class="mx-2" [routerLink]="['profile']">
-      <img [src]="profileImgUrl" (error)="setDefaultPic()" class="rounded-circle img img-fluid position-absolute" height="40" width="40"
-        alt="profile picture">
-      <avatar [letter]="user.username.charAt(0).toUpperCase()" [displayType]="'circle'" size="40"></avatar>
+      <img *ngIf="profileImgUrl;else showAvatar" [src]="profileImgUrl" (error)="setDefaultPic()" class="rounded-circle img img-fluid"
+        height="40" width="40" alt="profile picture">
+      <ng-template #showAvatar>
+        <avatar [letter]="user.username.charAt(0).toUpperCase()" [displayType]="'circle'" size="40"></avatar>
+      </ng-template>
     </a>
     <div class="nav-item dropdown">
       <a class="nav-link dropdown-toggle m-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"

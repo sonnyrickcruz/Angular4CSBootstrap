@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CompleterService, CompleterData } from 'ng2-completer';
 import { AuthService } from '../../services/auth.service';
 import { SkillService } from '../../services/skill.service';
+import { IndemandSkill } from '../../models/skill';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  protected searchStr: string;
+  indemandSkills;
+  searchStr: string;
   protected dataService: CompleterData;
   searchStorage;
   constructor(private _completerService: CompleterService,
@@ -20,15 +22,17 @@ export class HomeComponent implements OnInit {
     private _router: Router,
     private _sanitizer: DomSanitizer) {
     // init search
-    this.dataService = _completerService.local(this._skillService.getSkills(), 'name', 'name');
+    this.dataService = _completerService.local([], 'name', 'name');
   }
 
   ngOnInit() {
     if (!this._authService.isAuthenticated()) {
       this._router.navigate(['/login']);
     }
+    this.getIndemandSkills();
   }
 
+  // This will make warnings from browser gone
   videoUrl() {
     return this._sanitizer.bypassSecurityTrustResourceUrl("assets/Videos/video-bg-udacity.mp4");
   }
@@ -56,6 +60,10 @@ export class HomeComponent implements OnInit {
     }, (err) => {
       //Don't do anything
     })
+  }
+
+  getIndemandSkills() {
+    this.indemandSkills = this._skillService.getIndemandSkills();
   }
 
 }

@@ -37,3 +37,9 @@ export class UserSkillName {
     skillProficiencyId: number;
     skill: Skill;
 }
+
+export class IndemandSkill {
+    id: number;
+    name: string;
+    img: string;
+}

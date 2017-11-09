@@ -1,11 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Skill, SkillLevel, SkillSet, SkillCategory, UserSkillName } from '../models/skill';
-import { SessionStorageService } from 'ngx-webstorage';
+import { Skill, SkillLevel, SkillSet, SkillCategory, UserSkillName, IndemandSkill } from '../models/skill';
+import { LocalStorageService } from 'ngx-webstorage';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SkillService {
+  MOCK_INDEMAND_SKILLS: IndemandSkill[] = [{
+    id: 1,
+    name: "Javascript",
+    img: "assets/Logos/JS.png"
+  },{
+    id: 2,
+    name: "C#",
+    img: "assets/Logos/cSharp.png"
+  },{
+    id: 3,
+    name: "Java",
+    img: "assets/Logos/java.png"
+  },{
+    id: 4,
+    name: "Angular JS",
+    img: "assets/Logos/Angular.png"
+  },{
+    id: 5,
+    name: "Phyton",
+    img: "assets/Logos/phyton.png"
+  },{
+    id: 6,
+    name: "MySQL",
+    img: "assets/Logos/mysql.png"
+  }];
   MOCK_SKILL_SET: SkillSet[] = [{
     id: 1,
     name: "User Research",
@@ -192,7 +217,7 @@ export class SkillService {
   saveSkillLevel(skillId, level, username, skill) {
     let isSuccessful = false;
     try {
-      let userSkills: UserSkillName[] = this._sessionStorage.retrieve('userSkills');
+      let userSkills: UserSkillName[] = this._localStorage.retrieve('userSkills');
       let found = false;
       if (userSkills == null) {
         userSkills = [];
@@ -215,7 +240,7 @@ export class SkillService {
         isSuccessful = true;
         console.log("Skill Updated.");
       }
-      this._sessionStorage.store("userSkills", userSkills)
+      this._localStorage.store("userSkills", userSkills)
     } catch (e) {
       console.log("Skill not added due to some errors.")
     }
@@ -223,7 +248,7 @@ export class SkillService {
   }
 
   getSkillLevelsUser(username) {
-    let userSkills = this._sessionStorage.retrieve('userSkills');
+    let userSkills = this._localStorage.retrieve('userSkills');
     let skillLevels = [];
     if (userSkills)
     userSkills.forEach(element => {
@@ -239,7 +264,7 @@ export class SkillService {
   }
 
   getUserSkillLevel(username, skillId) {
-    let userSkills = this._sessionStorage.retrieve('userSkills');
+    let userSkills = this._localStorage.retrieve('userSkills');
     let skillLevel;
     if (userSkills)
     userSkills.forEach(element => {
@@ -252,7 +277,7 @@ export class SkillService {
 
   getUserSkillLevels(username) {
     let skills = [];
-    let userSkills = this._sessionStorage.retrieve('userSkills');
+    let userSkills = this._localStorage.retrieve('userSkills');
     if (userSkills != null)
     userSkills.forEach(userSkill => {
       skills.push({
@@ -267,9 +292,13 @@ export class SkillService {
     return skills;
   }
 
+  getIndemandSkills() {
+    return this.MOCK_INDEMAND_SKILLS;
+  }
+
   /*Call to Actual Service Starts here!*/
   constructor(private _http: Http,
-              private _sessionStorage:SessionStorageService) { }
+              private _localStorage:LocalStorageService) { }
 
   private _ldapURL = "http://172.26.54.34:8085/skill-search/";
   private _addSkillUrl = "http://172.26.54.34:8085/resource-skill/";

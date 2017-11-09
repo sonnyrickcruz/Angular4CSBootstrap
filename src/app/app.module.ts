@@ -7,6 +7,7 @@ import { SkillService } from "./services/skill.service";
 import { RoleService } from "./services/role.service";
 import { UserService } from "./services/user.service";
 import { AuthService } from "./services/auth.service";
+import { ImageService } from "./services/image.service";
 import { NouisliderModule } from 'ng2-nouislider';
 import { AvatarModule } from "ng2-avatar";
 import { HttpModule } from '@angular/http';
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
     SkillService,
     RoleService,
     UserService,
-    AuthService
+    AuthService,
+    ImageService
   ],
   bootstrap: [AppComponent]
 })
