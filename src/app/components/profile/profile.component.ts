@@ -3,6 +3,7 @@ import { User, UserSkill } from '../../models/employee';
 import { Skill } from '../../models/skill';
 import { UserService } from '../../services/user.service';
 import { SkillService } from '../../services/skill.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,18 +13,36 @@ import { SkillService } from '../../services/skill.service';
 export class ProfileComponent implements OnInit {
   user: User;
   sortedSkills: Skill[];
+  skillSets;
+  showSkills = true;
+  showSkillSet;
+  
   constructor(private _userService: UserService,
-              private _skillService: SkillService) { }
+              private _skillService: SkillService,
+              private _authService: AuthService) { }
 
   ngOnInit() {
-    this.user = this._userService.getUserByUserName('gian.liwanag');
+    this.user = this._authService.getUser();
+    this.skillSets = this._skillService.getSkillSets();
     console.log(JSON.stringify(this.user));
     this.sortSkills();
   }
 
+  showSkillsDiv() {
+    this.showSkills = true;
+    this.showSkillSet = false;
+  }
+
+  showSkillSetDiv() {
+    this.showSkills = false;
+    this.showSkillSet = true;
+  }
+
   sortSkills() {
-    let userSkills = this._userService.getUserSkillLevels(this.user.username);
+    let userSkills = this._skillService.getSkillLevelsUser(this.user.username);
+    console.log(userSkills)
     let skillLevels = this._skillService.getSkillLevels().reverse();
+    console.log(skillLevels)
     let skillToAdd: Skill;
     let count = 0;
     this.sortedSkills = [];
@@ -31,7 +50,7 @@ export class ProfileComponent implements OnInit {
     skillLevels.forEach(skillLevel => {
       userSkills.forEach(userSkill => {
         if (skillLevel.level == userSkill.skillProficiencyId && count < 6) {
-          skillToAdd = this._skillService.getSkillById(userSkill.skillId)
+          skillToAdd = userSkill.skill
           this.sortedSkills.push({
             "id": skillToAdd.id,
             "groupId": skillToAdd.groupId,

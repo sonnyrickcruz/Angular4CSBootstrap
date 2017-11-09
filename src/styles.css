@@ -1,1 +1,5 @@
 @import "~nouislider/distribute/nouislider.min.css";
+
+.hidden {
+    display: none;
+}

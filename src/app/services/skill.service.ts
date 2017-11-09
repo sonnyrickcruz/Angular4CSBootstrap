@@ -33,131 +33,139 @@ export class SkillService {
   MOCK_SKILL_CATEGORY: SkillCategory[] = [{
     id: 1,
     name: "Stakeholder Research",
-    img: "assets/Icons/11 stakeholders.png"
+    img: "assets/Icons/11 stakeholders.png",
+    level: 4
   },{
     id: 1,
     name: "Ecosystem Map",
-    img: "assets/Icons/12 ecosystem map.png"
+    img: "assets/Icons/12 ecosystem map.png",
+    level: 3
   },{
     id: 1,
     name: "Competitive Analysis",
-    img: "assets/Icons/13 Competitive Analysis.png"
+    img: "assets/Icons/13 Competitive Analysis.png",
+    level: 5
   },{
     id: 1,
     name: "Content Analysis",
-    img: "assets/Icons/14 Content Analysis.png"
+    img: "assets/Icons/14 Content Analysis.png",
+    level: 5
   },{
     id: 1,
     name: "Task Analysis",
-    img: "assets/Icons/12 Task Analysis.png"
+    img: "assets/Icons/12 Task Analysis.png",
+    level: 0
   },{
     id: 1,
     name: "User Serveys",
-    img: "assets/Icons/15 User surveys.png"
+    img: "assets/Icons/15 User surveys.png",
+    level: 0
   },{
     id: 1,
     name: "User Interviews",
-    img: "assets/Icons/16 user interviews.png"
+    img: "assets/Icons/16 user interviews.png",
+    level: 0
   },{
     id: 1,
     name: "Personas",
-    img: "assets/Icons/17 personas.png"
+    img: "assets/Icons/17 personas.png",
+    level: 0
   }];
   getSkillCategories() {
     return this.MOCK_SKILL_CATEGORY;
   }
   MOCK_SKILLS: Skill[] = [
-    {
-      "id": 1,
-      "groupId": 1,
-      "name": "Adobe Experience Design",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "Adobe Experience Design The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 2,
-      "groupId": 1,
-      "name": "Adobe Illustrator",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "Adobe Illustrator The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 3,
-      "groupId": 1,
-      "name": "Adobe Photoshop",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "Adobe Photoshop The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 4,
-      "groupId": 1,
-      "name": "Axure",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "axure The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 5,
-      "groupId": 1,
-      "name": "Balsamiq",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "balsamiq The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 6,
-      "groupId": 1,
-      "name": "Card Sorting",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "balsamiq The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 7,
-      "groupId": 1,
-      "name": "Comparative Analysis",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "Comparative Analysis The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 8,
-      "groupId": 1,
-      "name": "High-fidelity Prototype",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "balsamiq The quick brown fox jumps over a lazy dog"
-    },
-    {
-      "id": 9,
-      "groupId": 1,
-      "name": "Information Architecture",
-      "createdDate": 1386927444000,
-      "createdBy": "keane.godoy",
-      "description": "balsamiq The quick brown fox jumps over a lazy dog"
-    }
+    // {
+    //   "id": 1,
+    //   "groupId": 1,
+    //   "name": "Adobe Experience Design",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "Adobe Experience Design The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 2,
+    //   "groupId": 1,
+    //   "name": "Adobe Illustrator",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "Adobe Illustrator The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 3,
+    //   "groupId": 1,
+    //   "name": "Adobe Photoshop",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "Adobe Photoshop The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 4,
+    //   "groupId": 1,
+    //   "name": "Axure",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "axure The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 5,
+    //   "groupId": 1,
+    //   "name": "Balsamiq",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "balsamiq The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 6,
+    //   "groupId": 1,
+    //   "name": "Card Sorting",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "balsamiq The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 7,
+    //   "groupId": 1,
+    //   "name": "Comparative Analysis",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "Comparative Analysis The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 8,
+    //   "groupId": 1,
+    //   "name": "High-fidelity Prototype",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "balsamiq The quick brown fox jumps over a lazy dog"
+    // },
+    // {
+    //   "id": 9,
+    //   "groupId": 1,
+    //   "name": "Information Architecture",
+    //   "createdDate": 1386927444000,
+    //   "createdBy": "keane.godoy",
+    //   "description": "balsamiq The quick brown fox jumps over a lazy dog"
+    // }
   ];
   MOCK_SKILL_LEVELS: SkillLevel[] = [{
-    level: 0,
+    level: 1,
     label: "interested",
     description: "I have no idea but I want to learn it."
   },{
-    level: 1,
+    level: 2,
     label: "familiar",
     description: "Small amout of knowledge."
   },{
-    level: 2,
+    level: 3,
     label: "Used",
     description: "Used it in project"
   },{
-    level: 3,
+    level: 4,
     label: "Master",
     description: "Used it for more than 3 years. I can teach you this."
   },{
-    level: 4,
+    level: 5,
     label: "Guru",
     description: "I know everything about it and I don't need google"
   }]
@@ -212,6 +220,34 @@ export class SkillService {
       console.log("Skill not added due to some errors.")
     }
     return isSuccessful;
+  }
+
+  getSkillLevelsUser(username) {
+    let userSkills = this._sessionStorage.retrieve('userSkills');
+    let skillLevels = [];
+    if (userSkills)
+    userSkills.forEach(element => {
+      if (element.username == username) {
+        skillLevels.push({
+          "username":element.username,
+          "skill":element.skill,
+          "skillProficiencyId":element.skillProficiencyId
+        })
+      }
+    });
+    return skillLevels;
+  }
+
+  getUserSkillLevel(username, skillId) {
+    let userSkills = this._sessionStorage.retrieve('userSkills');
+    let skillLevel;
+    if (userSkills)
+    userSkills.forEach(element => {
+      if (element.username == username && element.skill.id == skillId) {
+        skillLevel = element.skillProficiencyId;
+      }
+    });
+    return skillLevel;
   }
 
   getUserSkillLevels(username) {

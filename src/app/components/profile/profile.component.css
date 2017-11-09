@@ -1,5 +1,27 @@
-
-
 .skill-div {
     max-height: 80px;
+}
+
+.profile-summary {
+    color: #fff;
+    background: rgba(3,54,89,1);
+    background: -moz-linear-gradient(left, rgba(3,54,89,1) 0%, rgba(23,114,113,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(3,54,89,1)), color-stop(100%, rgba(23,114,113,1)));
+    background: -webkit-linear-gradient(left, rgba(3,54,89,1) 0%, rgba(23,114,113,1) 100%);
+    background: -o-linear-gradient(left, rgba(3,54,89,1) 0%, rgba(23,114,113,1) 100%);
+    background: -ms-linear-gradient(left, rgba(3,54,89,1) 0%, rgba(23,114,113,1) 100%);
+    background: linear-gradient(to right, rgba(3,54,89,1) 0%, rgba(23,114,113,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#033659', endColorstr='#177271', GradientType=1 );
+}
+
+.profile-menu {
+    font-size: 23px;
+}
+
+.profile-menu:hover {
+    cursor: pointer;
+}
+
+.profile-menu .menu-active {
+    color: #03a9f4;
 }

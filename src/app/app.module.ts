@@ -11,6 +11,7 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { AvatarModule } from "ng2-avatar";
 import { HttpModule } from '@angular/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
+import { RatingModule } from "ngx-rating";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     NouisliderModule,
     AvatarModule.forRoot(),
     HttpModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    RatingModule
   ],
   providers: [
     SkillService,

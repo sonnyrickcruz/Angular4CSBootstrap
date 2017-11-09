@@ -29,6 +29,7 @@ export class SkillCategory {
     id: number;
     name: string;
     img: string;
+    level: number;
 }
 
 export class UserSkillName {

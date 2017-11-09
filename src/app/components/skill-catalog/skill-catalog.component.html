@@ -1,34 +1,37 @@
 <div class="skill-catalog col-12 p-0 m-0">
-
   <div class="row col-md-10 skills-grid ">
-    <div class="input-group search-skill mt-4 px-4">
+    <div class="col-12 text-left px-4 mt-5 pt-4" *ngIf="skillCatalogFlag">
+      <h2 class="search-messaging-title">Select your skills and expertise.</h2>
+      <p class="my-4 col-xl-8 p-0">You can also select skills your interested in. We'll offer you projects and trainings based on these or share your skills and knowledge to others. Showcase a valued credential and be in demand!</p>
+    </div>
+    <div class="input-group search-skill mt-4 px-4" *ngIf="skillCatalogFlag">
       <div class="input-group-addon">
         <i class="fa fa-search" aria-hidden="true"></i>
       </div>
       <input type="text" class="form-control" id="searchString" [(ngModel)]="searchStr" (keyup)="searchSkill($event)" name="searchString"
-        placeholder="Type the skill">
+        placeholder="Type the name of skill here">
     </div>
-    <div class="col-lg-12">
-      <a class="show-all-skills" (click)="getAllSkills()">All</a>
-      <a class="show-all-skills" (click)="getUserSkills()">My Skills</a>
+    <div class="col-lg-12 text-left m-4 skill-menu" *ngIf="skillCatalogFlag">
+      <a class="h5 mr-3" [ngClass]="{'font-weight-light': activeMenu!='all'}" (click)="getAllSkills()">All</a>
+      <a class="h5" [ngClass]="{'font-weight-light': activeMenu!='my skills'}" (click)="getUserSkills()">My Skills</a>
     </div>
-    <div class="col-lg-12 mt-4" *ngIf="skillPages.length > 1">
+    <div class="col-lg-12" *ngIf="skillPages.length > 1">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled" *ngIf="skillPages.length > 3">
-            <a class="page-link" tabindex="-1">Previous</a>
+          <li class="page-item" [ngClass]="{disabled:page == 1}" *ngIf="skillPages.length > 3">
+            <a class="page-link" (click)="setSkillByPage(page - 1)">Previous</a>
           </li>
-          <li class="page-item" *ngFor="let skillPage of skillPages">
-            <a class="page-link" (click)="setSkillByPage(skillPage.page)">{{skillPage.page}}</a>
+          <li class="page-item" [ngClass]="{active: skillPage.page == page}" *ngFor="let skillPage of skillPages">
+            <a class="page-link" (click)="setSkillByPage(skillPage.page)" *ngIf="(skillPage.page > page-maxPage) && (skillPage.page <= page+maxPage || skillPage.page <= (maxPage*2))">{{skillPage.page}}</a>
           </li>
-          <li class="page-item" *ngIf="skillPages.length > 3">
-            <a class="page-link">Next</a>
+          <li class="page-item" [ngClass]="{disabled:page == skillPages.length}" *ngIf="skillPages.length > 3">
+            <a class="page-link" (click)="setSkillByPage(page + 1)">Next</a>
           </li>
         </ul>
       </nav>
     </div>
     <div class="col-lg-4 my-4 px-4" *ngFor="let skill of skills">
-      <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill($event)">
+      <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill(skill.id)">
         <avatar [email]="skill.name" [displayType]="'square'" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
         <!-- <img class="card-img-top" [src]="getImageUrl(skill.name)" [alt]="skill.name"> -->
         <div class="card-body">
@@ -38,20 +41,38 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-12">
-      <nav aria-label="Page navigation example" *ngIf="skillPages.length > 1">
+    <div class="col-12 row mx-auto empty-skill" *ngIf="skills == null || skills.length == 0">
+      <div class="col-12">
+        <img src="assets/Images/skill-catalog-empty-state.png" aria-hidden="true">
+      </div>
+      <div class="col-12" *ngIf="activeMenu =='all'">
+        <h4 *ngIf="searchStr != null && (skills == null || skills.length == 0)">No skill found!</h4>
+        <h4 *ngIf="searchStr == null || searchStr == ''">Type the name of skill in the search box.</h4>
+      </div>
+      <div class="col-12" *ngIf="activeMenu =='my skills'">
+        <h4>Start adding skills!</h4>
+        <h5>Skills you've added will show here.</h5>
+      </div>
+    </div>
+    <div class="col-lg-12 mt-4" *ngIf="skillPages.length > 1">
+      <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled" *ngIf="skillPages.length > 3">
-            <a class="page-link" tabindex="-1">Previous</a>
+          <li class="page-item" [ngClass]="{disabled:page == 1}" *ngIf="skillPages.length > 3">
+            <a class="page-link" (click)="setSkillByPage(page - 1)">Previous</a>
           </li>
-          <li class="page-item" *ngFor="let skillPage of skillPages">
-            <a class="page-link" (click)="setSkillByPage(skillPage.page)">{{skillPage.page}}</a>
+          <li class="page-item" [ngClass]="{active: skillPage.page == page}" *ngFor="let skillPage of skillPages">
+            <a class="page-link" (click)="setSkillByPage(skillPage.page)" *ngIf="(skillPage.page > page-maxPage) && (skillPage.page <= page+maxPage || skillPage.page <= (maxPage*2))">{{skillPage.page}}</a>
           </li>
-          <li class="page-item" *ngIf="skillPages.length > 3">
-            <a class="page-link">Next</a>
+          <li class="page-item" [ngClass]="{disabled:page == skillPages.length}" *ngIf="skillPages.length > 3">
+            <a class="page-link" (click)="setSkillByPage(page + 1)">Next</a>
           </li>
         </ul>
       </nav>
+    </div>
+    <div class="col-12 empty-skill" *ngIf="skillCatalogFlag && (skills != null || (skills != null && skills.length > 0))">
+      <img src="assets/Images/explore-skill.png" class="my-5" aria-hidden="true">
+      <h5 class="my-3">Couldn't find what you're looking for?</h5>
+      <button class="btn btn-primary px-4 mb-5">Suggest a skill</button>
     </div>
   </div>
 
@@ -79,13 +100,14 @@
             <nouislider class="col-sm-12" [config]="someRange2config" [(ngModel)]="range" [disabled]="disabled" (ngModelChange)="getSkillLevel($event)"></nouislider>
             <h6 class="mt-2 col-sm-12">{{skillLevel.label}}</h6>
             <p class="card-text col-sm-12">{{skillLevel.description}}</p>
-            <div class="col-lg-8 mb-2">
-              <div class="alert alert-success p-2 m-0" role="alert" [ngClass]="{'alert-danger': !isSaveSkillSuccess, 'invisible': saveSkillMessage == ''}">
-                {{saveSkillMessage}}
+            <div class="col-12 mb-2">
+              <div class="alert alert-success m-0" role="alert" [ngClass]="{'alert-danger': !isSaveSkillSuccess, 'hidden': saveSkillMessage == ''}">
+                <p *ngIf="isSaveSkillSuccess" class="p-0 m-0">Skill added. Go to <a class="p-0 m-0 go-my-skill" data-dismiss="modal" aria-label="Close" (click)="getUserSkills()"><u>My Skill</u></a></p>
+                <p *ngIf="!isSaveSkillSuccess" class="p-0 m-0">Skill already exists. Go to <a class="p-0 m-0 go-my-skill" data-dismiss="modal" aria-label="Close" (click)="getUserSkills()"><u>My Skill</u></a></p>
               </div>
             </div>
-            <div class="col-lg-4 text-right mb-2">
-              <button class="btn btn-primary p-2 m-0 w-100" (click)="saveSkillLevel()">Save</button>
+            <div class="col-12 text-right mb-2">
+              <button *ngIf="!saveSkillClicked" class="btn btn-primary m-0" (click)="saveSkillLevel()">Save</button>
             </div>
           </div>
         </div>

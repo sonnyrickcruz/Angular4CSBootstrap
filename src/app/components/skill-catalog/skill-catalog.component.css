@@ -80,6 +80,26 @@ div.input-group.search-skill > div {
     cursor: pointer;
 }
 
+.page-item:hover {
+    cursor: pointer;
+}
+
+.skill-menu a {
+    cursor: pointer;    
+}
+
+.go-my-skill {
+    cursor: pointer;
+}
+
+.empty-skill {
+    color: #777777;
+}
+
+.search-messaging-title {
+    color: #03a9f4;
+}
+
 :host /deep/ div.noUi-value {
     display: none;
 }
