@@ -47,7 +47,7 @@
         </div>
         <p class="mt-3">There's always time to learn something new or delve deeper into a topic that really interests you.</p>
         <p>The opposites to improve your knowledge and expand your horizons are endless.</p>
-        <button class="btn btn-primary w-100" [routerLink]="['/skill-catalog']">Explore</button>
+        <button class="btn w-100 explore-btn" [routerLink]="['/skill-catalog']">Explore</button>
       </div>
     </div>
 
@@ -68,20 +68,22 @@
           <div class="col-3 align-middle ux-design mt-auto"><h2>User Experience Design</h2></div>
         </div>
       </div>
-      <div class="col-12 text-right mt-5 px-4">
-          <button class="btn btn-primary" [routerLink]="['/explore']">View All</button>
+      <div class="col-12 text-right px-4 view-paths">
+        <a  [routerLink]="['/explore']">View all<button class="btn view-all mx-3">></button></a> 
       </div>
     </div>
-    <div class="row col-12 mx-auto p-5 m-5">
-      <div class="col-4">
-        <p>Don't just keep up with the technology.</p>
-        <h2>MASTER IT</h2>
+    
+    <div class="indemand-skill row col-12 mx-auto p-5 m-5">
+      <div class="col-4 m-auto p-5 indemand-message">
+          Don't just keep up with the technology.
+          <br>
+          <span>MASTER IT</span>
       </div>
       <div class="col-8">
-        <div class="card">
-          <div class="col-12">MOST IN-DEMAND <span><b>PROFESSIONAL</b> SKILLS</span></div>
-          <div class="col-12 row">
-            <div class="col-lg-6 row mx-auto m-1 rounded border" *ngFor="let idemandSkill of indemandSkills">
+        <div class="card p-4">
+          <div class="col-12 text-center p-4 font-weight-bold indemand-title">MOST IN-DEMAND <span>PROFESSIONAL SKILLS</span></div>
+          <div class="col-12 row mx-auto">
+            <div class="col-lg-5 row mx-auto my-3 rounded border p-0 skill-indemand" *ngFor="let idemandSkill of indemandSkills">
               <div class="col-5 p-0">
                 <img [src]="idemandSkill.img" alt="" class="img-fluid">
               </div>
@@ -90,8 +92,8 @@
               </div>
             </div>
           </div>
-          <div class="col-12 text-right px-4">
-            <button class="btn btn-primary" [routerLink]="['/explore']">View All</button>
+          <div class="col-12 text-right px-4 view-indemand">
+            <a  [routerLink]="['/explore']">View all<button class="btn view-all mx-3">></button></a> 
           </div>
         </div>
       </div>

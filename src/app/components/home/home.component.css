@@ -40,14 +40,33 @@
 
 .learning-path {
     background: #333333;
-    height: 800px;
+    height: 725px;
+}
+
+.view-paths {
+    cursor: pointer;
+    margin: 20px;
+}
+
+.view-paths a {
+    color: #fff;
+}
+
+.view-paths .view-all.btn {
+    cursor: pointer;
+    background-color: #333;
+    font-weight: bolder;
+    color: #fff;
+    border-radius: 50%;
+    border: 2px solid #fff;
 }
 
 .master-it {
-    background-image: url('../../../assets/Images/developers-workstation-blurred.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../assets/Images/developers-workstation-blurred.png');
     height: 750px;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+    
 }
 
 :host /deep/ .completer-input {
@@ -147,6 +166,19 @@ video {
     font-weight: lighter;
 }
 
+.explore-btn {
+    background-color: #03a9f4;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 20px;
+}
+
+.explore-btn:hover {
+    cursor: pointer;
+    -webkit-filter: opacity(70%); /* Safari */
+    filter: opacity(70%);
+}
+
 .software-dev {
     background-image: linear-gradient(rgba(0, 217, 255, 0.5), rgba(38, 0, 255, 0.685)), url('../../../assets/Images/developer.png');
     background-position: center center;
@@ -174,3 +206,39 @@ video {
     height: 25em;
 }
 
+.indemand-message {
+    font-size: 45px;
+    color: #fff;
+}
+
+.indemand-message span {
+    font-weight: bold;
+}
+
+.indemand-title {
+    font-size: 20px;
+}
+
+.indemand-title span {
+    color: #36ccae;
+}
+
+.skill-indemand {
+    box-shadow: 3px 5px 20px #bcc0c2;
+}
+
+.view-indemand {
+    cursor: pointer;
+}
+
+.view-indemand a {
+    color: #36ccae;
+}
+
+.view-indemand .view-all.btn {
+    cursor: pointer;
+    background-color: #36ccae;
+    font-weight: bolder;
+    color: #fff;
+    border-radius: 50%; 
+}

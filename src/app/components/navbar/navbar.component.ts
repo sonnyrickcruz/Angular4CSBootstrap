@@ -28,9 +28,14 @@ export class NavbarComponent implements OnInit {
       this._router.events.subscribe((url: any) => this.showNav = !url.url.includes("/login"));
       this.profileImgUrl = this._imageService.getUserImage(this.user.username);
     } else {
-      // Fix nav on route redirect
-      location.reload();
-      this._router.navigate(['/login']);
+      // Fix nav not displaying on route redirect
+      this._router.events.subscribe((url: any) => {
+        if (!url.url.includes("/login")) {
+          location.reload();
+          this._router.navigate(['/login']);
+        }
+      }
+      );
     }
   }
 

@@ -47,6 +47,9 @@
           <!-- <img [src]="getImageUrl(skill.name)" class="rounded" height="80px" width="80px" (error)="test($event)"> -->
           <avatar [name]="skill.name" [displayType]="'square'" size="80" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
         </div>
+        <div class="col-12" *ngIf="sortedSkills || (sortedSkills && sortedSkills.length > 0)">
+          No skills added yet
+        </div>
       </div>
     </div>
   </div>
