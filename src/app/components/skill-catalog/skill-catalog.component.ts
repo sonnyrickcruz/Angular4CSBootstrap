@@ -3,6 +3,7 @@ import { Skill } from '../../models/skill';
 import { User, UserSkill } from '../../models/employee';
 import { SkillService } from '../../services/skill.service';
 import { AuthService } from '../../services/auth.service';
+import { ImageService } from '../../services/image.service';
 import { SkillLevel, SkillPage } from '../../models/skill';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -34,8 +35,7 @@ export class SkillCatalogComponent implements OnInit {
 
   isSaveSkillSuccess;
   saveSkillMessage;
-  updatedMessage = "Skill added.";
-  errorMessage = "Error in adding skill.";
+  errorMessage = "There's a service problem right now, please try again later.";
 
   range = 1;
   someRange2config: any = {
@@ -57,10 +57,10 @@ export class SkillCatalogComponent implements OnInit {
     private _userService: UserService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private _auth: AuthService) { }
+    private _auth: AuthService,
+    private _imageService: ImageService) { }
 
   ngOnInit() {
-    console.log(this.maxPage)
     this.searchStr = this._activatedRoute.snapshot.params['q'];
     this.skillLevels = this._skillService.getSkillLevels();
     this.getSkillLevel(this.range);
@@ -72,7 +72,6 @@ export class SkillCatalogComponent implements OnInit {
       this.activeMenu = "all"
     }
     this.indexedSkills = this.skills
-    console.log(this.searchStr);
     if (this.searchStr)
       this.searchSkillTrigger(this.searchStr);
   }
@@ -115,18 +114,17 @@ export class SkillCatalogComponent implements OnInit {
   saveSkillLevel() {
     this.saveSkillClicked = true;
     if (this.skill.id && this.range != null) {
-      console.log(this.skill.id);
-      console.log(this.range)
       this._skillService.saveSkillLevelService(this.skill.id, this.range, this.user.username).subscribe(
         (data) => {
-          console.log(data)
-          console.log(data.result)
           if (data.result == "success") {
             this._skillService.saveSkillLevel(this.skill.id, this.range, this.user.username, this.skill);
-            this.saveSkillMessage = "Skill added";
+            this.saveSkillMessage = "Skill added.";
             this.isSaveSkillSuccess = true;
           } else {
-            this.saveSkillMessage = "Skill already exist";
+            this.saveSkillMessage = "Error in saving your skill.";
+            if (this._skillService.saveSkillLevel(this.skill.id, this.range, this.user.username, this.skill)) {
+              this.saveSkillMessage = this.saveSkillMessage + " But we found ways to save it for you. ";
+            }
             this.isSaveSkillSuccess = false;
           }
         },
@@ -152,12 +150,16 @@ export class SkillCatalogComponent implements OnInit {
     if (searchStr) {
       let filteredSkills: Skill[] = [];
       this._skillService.retrieveSkillBySearchStr(searchStr).subscribe((data) => {
-        console.log(data)
         this.paginateSkills(data);
       }, (err) => {
-        //Don't do anything
+        this.getSkillMocks();
       })
     }
+  }
+
+  getSkillMocks() {
+    let skills = this._skillService.getSkills();
+    this.paginateSkills(skills);
   }
 
   getAllSkills() {
@@ -212,11 +214,56 @@ export class SkillCatalogComponent implements OnInit {
 
   setSkillByPage(page) {
     this.page = page;
-    console.log(this.skillPages)
     this.skillPages.forEach(skillPage => {
       if (skillPage.page == page) {
         this.skills = skillPage.skills;
       }
     })
+  }
+
+  getSkillImage(skillName) {
+    let imgUrl;
+    if (skillName) {
+      imgUrl = this._imageService.getSkillImage(skillName);
+    }
+    return imgUrl;
+  }
+
+  isNew(rawDate) {
+    let isNew = false;
+    if (rawDate) {
+      let oneDay = 86400000;//24*60*60*1000
+      let diff;
+      let date
+      let today = new Date();
+      date = new Date(rawDate);
+      diff = today.valueOf() - date.valueOf();
+      diff = Math.round(Math.abs(diff / (oneDay)));
+      if (diff < 30) {
+        isNew = true;
+      }
+    }
+    return isNew;
+  }
+
+  getSkillLevelName(id) {
+    let levelName;
+    let level;
+    let skillProficiencyId;
+    if (id) {
+      skillProficiencyId = this._skillService.getUserSkillLevel(this.user.username, id);
+      if (skillProficiencyId) {
+        level = skillProficiencyId;
+      } else {
+        level = 0;
+      }
+    }
+    if (level)
+      this.skillLevels.forEach(skillLevel => {
+        if (skillLevel.level == level) {
+          levelName = skillLevel.label.toLowerCase();
+        }
+      });
+    return levelName;
   }
 }

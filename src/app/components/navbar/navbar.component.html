@@ -17,7 +17,7 @@
         <a class="nav-link" [routerLink]="['explore']">Explore</a>
       </li>
     </ul>
-    <i class="fa fa-bell mx-2" aria-hidden="true"></i>
+    <!-- <i class="fa fa-bell mx-2" aria-hidden="true"></i> -->
     <a class="mx-2" [routerLink]="['profile']">
       <img *ngIf="profileImgUrl;else showAvatar" [src]="profileImgUrl" (error)="setDefaultPic()" class="rounded-circle img img-fluid"
         height="40" width="40" alt="profile picture">
@@ -30,7 +30,6 @@
         aria-expanded="false">
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item">Settings</a>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
     </div>

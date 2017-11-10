@@ -21,7 +21,7 @@
 
 .blue-div {
     background: #03A9F4;
-    height: 725px;
+    height: 750px;
     -webkit-clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
 }
@@ -116,6 +116,7 @@
 
 .search-card {
     height: 100%;
+    box-shadow: 3px 5px 20px #444444;
 }
 
 .search-skill .input-group-addon {
@@ -132,6 +133,10 @@ video {
     height: auto; 
     background-size: cover;
     overflow: hidden;
+}
+
+.video-div {
+    box-shadow: 3px 5px 20px #444444;
 }
 
 .skill-title {
@@ -182,7 +187,14 @@ video {
 .software-dev {
     background-image: linear-gradient(rgba(0, 217, 255, 0.5), rgba(38, 0, 255, 0.685)), url('../../../assets/Images/developer.png');
     background-position: center center;
-    background-size: 100% auto;
+    background-size: 100%;
+}
+
+.explore-img h2 {
+    margin-left: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .artificial-intel {
@@ -223,8 +235,16 @@ video {
     color: #36ccae;
 }
 
+.indemand-skill-name{
+    font-size: 20px;
+}
+
 .skill-indemand {
     box-shadow: 3px 5px 20px #bcc0c2;
+}
+
+.indemand-skill-div {
+    box-shadow: 3px 5px 20px #444444;
 }
 
 .view-indemand {

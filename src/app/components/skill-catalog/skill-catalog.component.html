@@ -1,8 +1,9 @@
-<div class="skill-catalog col-12 p-0 m-0">
+<div class="skill-catalog col-lg-12 p-0 m-0">
   <div class="row col-md-10 skills-grid ">
-    <div class="col-12 text-left px-4 mt-5 pt-4" *ngIf="skillCatalogFlag">
+    <div class="col-lg-12 text-left px-4 mt-5 pt-4" *ngIf="skillCatalogFlag">
       <h2 class="search-messaging-title">Select your skills and expertise.</h2>
-      <p class="my-4 col-xl-8 p-0">You can also select skills your interested in. We'll offer you projects and trainings based on these or share your skills and knowledge to others. Showcase a valued credential and be in demand!</p>
+      <p class="my-4 col-xl-8 p-0">You can also select skills your interested in. We'll offer you projects and trainings based on these or share your
+        skills and knowledge to others. Showcase a valued credential and be in demand!</p>
     </div>
     <div class="input-group search-skill mt-4 px-4" *ngIf="skillCatalogFlag">
       <div class="input-group-addon">
@@ -12,8 +13,8 @@
         placeholder="Type the name of skill here">
     </div>
     <div class="col-lg-12 text-left m-4 skill-menu" *ngIf="skillCatalogFlag">
-      <a class="h5 mr-3" [ngClass]="{'font-weight-light': activeMenu!='all'}" (click)="getAllSkills()">All</a>
-      <a class="h5" [ngClass]="{'font-weight-light': activeMenu!='my skills'}" (click)="getUserSkills()">My Skills</a>
+      <a class="h5 mr-3" [ngClass]="{'font-weight-light': activeMenu!='all'}" (click)="activeMenu!='all'&&getAllSkills()">All</a>
+      <a class="h5" [ngClass]="{'font-weight-light': activeMenu!='my skills'}" (click)="activeMenu!='my skills'&&getUserSkills()">My Skills</a>
     </div>
     <div class="col-lg-12" *ngIf="skillPages.length > 1">
       <nav aria-label="Page navigation example">
@@ -32,26 +33,49 @@
     </div>
     <div class="col-lg-4 my-4 px-4" *ngFor="let skill of skills">
       <div class="card skill col-lg-12" data-toggle="modal" data-target="#skillModal" [id]="skill.id" (click)="getSkill(skill.id)">
-        <avatar [email]="skill.name" [displayType]="'square'" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
-        <!-- <img class="card-img-top" [src]="getImageUrl(skill.name)" [alt]="skill.name"> -->
-        <div class="card-body">
-          <h5 class="card-title">{{skill.name}}</h5>
+        <div class="img-div">
+          <img *ngIf="getSkillImage(skill.name);else skillAvatar" class="card-img-top" [src]="getSkillImage(skill.name)" [alt]="skill.name">
+          <ng-template #skillAvatar>
+            <avatar [email]="skill.name" [displayType]="'square'" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
+          </ng-template>
+          <div *ngIf="!skillCatalogFlag && getSkillLevelName(skill.id)" class="skill-level rounded px-1 mt-3 ml-3">
+            <span class="interested" [ngClass]="{'interested':getSkillLevelName(skill.id)=='interested',
+             'familiar':getSkillLevelName(skill.id)=='familiar',
+              'used':getSkillLevelName(skill.id)=='used',
+               'master':getSkillLevelName(skill.id)=='master',
+                'guru':getSkillLevelName(skill.id)=='guru'}">{{getSkillLevelName(skill.id)}}</span>
+          </div>
+        </div>
+
+        <div class="card-body text-left p-4">
+          <div class="col-lg-12 row m-0 p-0">
+            <div class="col-lg-10 p-0">
+              <h5 class="card-title">{{skill.name}}</h5>
+            </div>
+            <div class="col-lg-2 p-0 h-100 rounded text-center new-skill" *ngIf="isNew(skill.createdDate)">
+              NEW!
+            </div>
+          </div>
           <p class="card-text">{{skill.description}}</p>
           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
         </div>
       </div>
     </div>
-    <div class="col-12 row mx-auto empty-skill" *ngIf="skills == null || skills.length == 0">
-      <div class="col-12">
+    <div class="col-lg-12 row mx-auto empty-skill" *ngIf="skills == null || skills.length == 0">
+      <div class="col-lg-12">
         <img src="assets/Images/skill-catalog-empty-state.png" aria-hidden="true">
       </div>
-      <div class="col-12" *ngIf="activeMenu =='all'">
+      <div class="col-lg-12" *ngIf="activeMenu =='all'">
         <h4 *ngIf="searchStr != null && (skills == null || skills.length == 0)">No skill found!</h4>
         <h4 *ngIf="searchStr == null || searchStr == ''">Type the name of skill in the search box.</h4>
       </div>
-      <div class="col-12" *ngIf="activeMenu =='my skills'">
+      <div class="col-lg-12" *ngIf="activeMenu =='my skills'">
         <h4>Start adding skills!</h4>
         <h5>Skills you've added will show here.</h5>
+      </div>
+      <div class="col-lg-12 mb-5 pb-5" *ngIf="!skillCatalogFlag">
+        <h4>Start rating your skills!</h4>
+        <h5>Skills you've rated will show here.</h5>
       </div>
     </div>
     <div class="col-lg-12 mt-4" *ngIf="skillPages.length > 1">
@@ -69,7 +93,7 @@
         </ul>
       </nav>
     </div>
-    <div class="col-12 empty-skill" *ngIf="skillCatalogFlag && (skills != null || (skills != null && skills.length > 0))">
+    <div class="col-lg-12 empty-skill" *ngIf="skillCatalogFlag && (skills != null || (skills != null && skills.length > 0))">
       <img src="assets/Images/explore-skill.png" class="my-5" aria-hidden="true">
       <h5 class="my-3">Couldn't find what you're looking for?</h5>
       <button class="btn btn-primary px-4 mb-5">Suggest a skill</button>
@@ -87,8 +111,17 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <div class="card col-sm-6">
-          <!-- <img class="card-img-top d-none d-sm-block" [src]="getImageUrl(skill.name)" [alt]="skill.name"> -->
-          <avatar [email]="skill.name" [displayType]="'square'" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
+          <img *ngIf="getSkillImage(skill.name);else skillAvatar" class="card-img-top" [src]="getSkillImage(skill.name)" [alt]="skill.name">
+          <ng-template #skillAvatar>
+            <avatar [email]="skill.name" [displayType]="'square'" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
+          </ng-template>
+          <div *ngIf="!skillCatalogFlag && getSkillLevelName(skill.id)" class="skill-level rounded px-1 mt-3 ml-3">
+              <span class="interested" [ngClass]="{'interested':getSkillLevelName(skill.id)=='interested',
+               'familiar':getSkillLevelName(skill.id)=='familiar',
+                'used':getSkillLevelName(skill.id)=='used',
+                 'master':getSkillLevelName(skill.id)=='master',
+                  'guru':getSkillLevelName(skill.id)=='guru'}">{{getSkillLevelName(skill.id)}}</span>
+            </div>
           <div class="card-body">
             <h5 class="card-title">{{skill.name}}</h5>
             <p class="card-text">{{skill.description}}</p>
@@ -97,17 +130,25 @@
         <div class="card col-sm-6 level">
           <div class="card-body row p-1">
             <h6 class="card-title mb-3 col-sm-12">Select your level of expertise</h6>
-            <nouislider class="col-sm-12" [config]="someRange2config" [(ngModel)]="range" [disabled]="disabled" (ngModelChange)="getSkillLevel($event)"></nouislider>
+            <nouislider class="col-sm-12" [config]="someRange2config" [(ngModel)]="range" [disabled]="!skillCatalogFlag" (ngModelChange)="getSkillLevel($event)"></nouislider>
             <h6 class="mt-2 col-sm-12">{{skillLevel.label}}</h6>
             <p class="card-text col-sm-12">{{skillLevel.description}}</p>
-            <div class="col-12 mb-2">
+            <div class="col-lg-12 mb-2">
               <div class="alert alert-success m-0" role="alert" [ngClass]="{'alert-danger': !isSaveSkillSuccess, 'hidden': saveSkillMessage == ''}">
-                <p *ngIf="isSaveSkillSuccess" class="p-0 m-0">Skill added. Go to <a class="p-0 m-0 go-my-skill" data-dismiss="modal" aria-label="Close" (click)="getUserSkills()"><u>My Skill</u></a></p>
-                <p *ngIf="!isSaveSkillSuccess" class="p-0 m-0">Skill already exists. Go to <a class="p-0 m-0 go-my-skill" data-dismiss="modal" aria-label="Close" (click)="getUserSkills()"><u>My Skill</u></a></p>
+                <p *ngIf="isSaveSkillSuccess" class="p-0 m-0">{{saveSkillMessage}} Go to
+                  <a class="p-0 m-0 go-my-skill" data-dismiss="modal" aria-label="Close" [routerLink]="['/profile']">
+                    <u>My Profile</u>
+                  </a>
+                </p>
+                <p *ngIf="!isSaveSkillSuccess" class="p-0 m-0">{{saveSkillMessage}} Go to
+                  <a class="p-0 m-0 go-my-skill" data-dismiss="modal" aria-label="Close" [routerLink]="['/profile']">
+                    <u>My Profile</u>
+                  </a>
+                </p>
               </div>
             </div>
-            <div class="col-12 text-right mb-2">
-              <button *ngIf="!saveSkillClicked" class="btn btn-primary m-0" (click)="saveSkillLevel()">Save</button>
+            <div class="col-lg-12 text-right mb-2">
+              <button *ngIf="!saveSkillClicked && skillCatalogFlag" class="btn btn-primary m-0" (click)="saveSkillLevel()">Save</button>
             </div>
           </div>
         </div>

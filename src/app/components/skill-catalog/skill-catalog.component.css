@@ -30,6 +30,39 @@ div.input-group.search-skill > div {
     border-left: none;
 }
 
+.skill-level {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.interested {
+    color: #aa79cc;
+}
+
+.familiar {
+    color: #03a9f4;
+}
+
+.used {
+    color: #22c622;
+}
+
+.master {
+    color: #ff9d33;
+}
+
+.guru {
+    color: #fc4f4f;
+}
+
+.skill-level span {
+    text-transform: uppercase;
+}
+
 .skill .card-text {
     font-size: 14px;
 }
@@ -37,6 +70,12 @@ div.input-group.search-skill > div {
 .skills-grid {
     text-align: center;
     margin: auto;
+}
+
+.new-skill {
+    color: #fff;
+    background-color: #ff9d33;
+    font-size: 12px;
 }
 
 #skillModal .card {

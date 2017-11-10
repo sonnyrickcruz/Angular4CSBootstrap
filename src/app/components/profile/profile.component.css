@@ -18,10 +18,17 @@
     font-size: 23px;
 }
 
-.profile-menu:hover {
+.profile-menu a:hover {
     cursor: pointer;
+    color: gray;
 }
 
 .profile-menu .menu-active {
     color: #03a9f4;
+    font-weight: bold;
+}
+
+.role-name {
+    border-bottom: 1px solid #000;
+    font-size: 23px;
 }

@@ -1,5 +1,9 @@
 @import "~nouislider/distribute/nouislider.min.css";
 
+html body {
+    font-family: "Roboto";
+  }
+
 .hidden {
     display: none;
 }

@@ -18,11 +18,11 @@ export class ProfileComponent implements OnInit {
   showSkills = true;
   showSkillSet;
   profileImgUrl;
-  
+
   constructor(private _userService: UserService,
-              private _skillService: SkillService,
-              private _authService: AuthService,
-              private _imageservice: ImageService) { }
+    private _skillService: SkillService,
+    private _authService: AuthService,
+    private _imageservice: ImageService) { }
 
   ngOnInit() {
     this.user = this._authService.getUser();
@@ -32,13 +32,17 @@ export class ProfileComponent implements OnInit {
   }
 
   showSkillsDiv() {
-    this.showSkills = true;
-    this.showSkillSet = false;
+    if (!this.showSkills) {
+      this.showSkills = true;
+      this.showSkillSet = false;
+    }
   }
 
   showSkillSetDiv() {
-    this.showSkills = false;
-    this.showSkillSet = true;
+    if (!this.showSkillSet) {
+      this.showSkills = false;
+      this.showSkillSet = true;
+    }
   }
 
   sortSkills() {
@@ -47,7 +51,7 @@ export class ProfileComponent implements OnInit {
     let skillToAdd: Skill;
     let count = 0;
     this.sortedSkills = [];
-    
+
     skillLevels.forEach(skillLevel => {
       userSkills.forEach(userSkill => {
         if (skillLevel.level == userSkill.skillProficiencyId && count < 6) {
@@ -60,18 +64,25 @@ export class ProfileComponent implements OnInit {
             "createdBy": skillToAdd.createdBy,
             "description": skillToAdd.description
           })
-          count ++;
+          count++;
         }
       });
     });
-    console.log(JSON.stringify(this.sortedSkills))
   }
 
   getImageUrl(name: string) {
     return "assets/Icons/" + name.replace(/\s+/g, '-').toLowerCase() + ".pngs";
   }
-  
+
   getProfilePic() {
     this.profileImgUrl = this._imageservice.getUserImage(this.user.username);
+  }
+
+  getSkillThumbnail(skillName) {
+    let imgUrl;
+    if (skillName) {
+      imgUrl = this._imageservice.getSkillImageThumbnail(skillName);
+    }
+    return imgUrl;
   }
 }

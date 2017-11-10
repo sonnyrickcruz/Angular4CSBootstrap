@@ -27,18 +27,6 @@ export class LoginComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit() {
-    let u = {
-      "username": "sonny.cruz",
-      "employee": {
-        "name": "Cruz, Sonny Rick B.",
-        "nickName": null,
-        "role": { "roleName": "Software Developer" },
-        "businessGroupObject": { "businessGroup": "Transportation and Logistics", "businessGroupCode": "T&L" }
-      }
-    }
-
-    this._authService.login(u)
-    console.log(this._authService.isAuthenticated())
     if (this._authService.isAuthenticated()) {
       this._router.navigate(['/home']);
     }

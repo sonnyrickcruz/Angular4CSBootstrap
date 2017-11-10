@@ -41,17 +41,17 @@ export class ImageService {
   }]
 
   MOCK_SKILL_IMAGES: Image[] = [{
-    identifyer: "adobe-experience-design",
+    identifyer: "adobe experience design",
     src: "assets/Images/Skills/adobe-experience-design.png",
     thumbnail: null
   }, {
-    identifyer: "adobe-illustrator",
+    identifyer: "adobe illustrator",
     src: "assets/Images/Skills/adobe-illustrator.png",
     thumbnail: null
   }, {
-    identifyer: "adobe-photoshop",
+    identifyer: "adobe photoshop",
     src: "assets/Images/Skills/adobe-photoshop.png",
-    thumbnail: "assets/icons/06 photoshop.png"
+    thumbnail: "assets/Icons/06 photoshop.png"
   }, {
     identifyer: "axure",
     src: "assets/Images/Skills/axure.png",
@@ -59,45 +59,45 @@ export class ImageService {
   }, {
     identifyer: "balsamiq",
     src: "assets/Images/Skills/balsamiq.png",
-    thumbnail: "assets/icons/07 balsamiq.png"
+    thumbnail: "assets/Icons/07 balsamiq.png"
   }, {
-    identifyer: "card-sorting",
+    identifyer: "card sorting",
     src: "assets/Images/Skills/card-sorting.png",
     thumbnail: null
   }, {
-    identifyer: "comparative-analysis",
+    identifyer: "comparative analysis",
     src: "assets/Images/Skills/comparative-analysis.png",
     thumbnail: null
   }, {
-    identifyer: "high-fidelity-prototype",
+    identifyer: "high-fidelity prototype",
     src: "assets/Images/Skills/high-fidelity-prototype.png",
     thumbnail: null
   }, {
-    identifyer: "information-architecture",
+    identifyer: "information architecture",
     src: "assets/Images/Skills/information-architecture.png",
     thumbnail: null
   }, {
-    identifyer: "marvel-up",
+    identifyer: "marvel up",
     src: null,
-    thumbnail: "assets/icons/05 Marvelup.png"
+    thumbnail: "assets/Icons/05 Marvelup.png"
   }, {
     identifyer: "bootstrap",
     src: null,
-    thumbnail: "assets/icons/08 Bootstrap.png"
+    thumbnail: "assets/Icons/08 Bootstrap.png"
   }, {
     identifyer: "foundation",
     src: null,
-    thumbnail: "assets/icons/09 Foundation.png"
+    thumbnail: "assets/Icons/09 Foundation.png"
   }, {
-    identifyer: "customer-journey-map",
+    identifyer: "customer journey map",
     src: null,
-    thumbnail: "assets/icons/10 cj map.png"
+    thumbnail: "assets/Icons/10 cj map.png"
   }]
 
   getUserImage(username) {
     let imgUrl;
     this.MOCK_USER_IMAGES.forEach(image => {
-      if (username == image.identifyer && image.src) {
+      if (username.toLowerCase() == image.identifyer.toLowerCase() && image.src) {
         imgUrl = image.src;
       }
     });
@@ -107,7 +107,7 @@ export class ImageService {
   getSkillImage(identifyer) {
     let imgUrl;
     this.MOCK_SKILL_IMAGES.forEach(image => {
-      if (identifyer == image.identifyer && image.src) {
+      if (identifyer.toLowerCase() == image.identifyer.toLowerCase() && image.src) {
         imgUrl = image.src;
       }
     });
@@ -117,7 +117,7 @@ export class ImageService {
   getSkillImageThumbnail(identifyer) {
     let imgUrl;
     this.MOCK_SKILL_IMAGES.forEach(image => {
-      if (identifyer == image.identifyer && image.thumbnail) {
+      if (identifyer.toLowerCase() == image.identifyer.toLowerCase() && image.thumbnail) {
         imgUrl = image.thumbnail;
       }
     });

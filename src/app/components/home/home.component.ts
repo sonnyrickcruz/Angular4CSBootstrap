@@ -41,7 +41,8 @@ export class HomeComponent implements OnInit {
     return "assets/Images/creative-passionate-effective.png";
   }
 
-  searchSkill() {
+  searchSkill(event) {
+    if (event.keyCode == 13)
     if (this.searchStr && this.searchStr.length > 0) {
       this._router.navigate(['skill-catalog', this.searchStr]);
     }

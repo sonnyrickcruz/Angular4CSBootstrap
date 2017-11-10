@@ -2,21 +2,23 @@
   <div class="col-sm-7 mx-auto mt-5">
     <div class="col-lg-2 d-inline-block mx-auto align-middle pr-0">
       <img *ngIf="profileImgUrl;else showAvatar" [src]="profileImgUrl" alt="Profile Pic" class="rounded-circle img img-fluid">
-      <ng-template #showAvatar><avatar class="mr-0" [letter]="user.username.charAt(0).toUpperCase()" [displayType]="'circle'"></avatar></ng-template>
+      <ng-template #showAvatar>
+        <avatar class="mr-0" [letter]="user.username.charAt(0).toUpperCase()" [displayType]="'circle'"></avatar>
+      </ng-template>
     </div>
-    <div class="col-sm-6 d-inline-block mx-auto align-middle pl-0">
+    <div class="col-lg-6 d-inline-block mx-auto align-middle pl-0">
       <h3 class="name">Hi! I'm {{user.employee.name}}</h3>
       <h4 class="role font-weight-light">a {{user.employee.role.roleName}} from</h4>
       <h4 class="business-group font-weight-light">{{user.employee.businessGroupObject.businessGroup}}</h4>
     </div>
   </div>
-  <div class="col-lg-11 p-5 my-4 mx-auto row text-left">
+  <div class="col-lg-12 p-5 my-4 row text-left">
     <div class="col-lg-8">
       <div class="col-lg-12">
         Skill Set Progress
       </div>
       <div class="col-lg-12 row">
-        <div class="row col-6 p-0 mx-0" *ngFor="let skillSet of skillSets">
+        <div class="row col-lg-6 p-0 mx-0" *ngFor="let skillSet of skillSets">
           <div class="col-12">
             <div class="row col-12 p-0">
               <div class="col-5 d-inline my-2">
@@ -42,21 +44,29 @@
       <div class="col-lg-12">
         Top Skills
       </div>
-      <div class="col-xs-12 card-group">
+      <div class="col-lg-12 card-group">
         <div class="skill-div col-xs-4 m-2" *ngFor="let skill of sortedSkills">
-          <!-- <img [src]="getImageUrl(skill.name)" class="rounded" height="80px" width="80px" (error)="test($event)"> -->
-          <avatar [name]="skill.name" [displayType]="'square'" size="80" data-toggle="tooltip" data-placement="top" [title]="skill.name"></avatar>
+          <img *ngIf="getSkillThumbnail(skill.name);else skillThumbAvatar" [src]="getSkillThumbnail(skill.name)" data-toggle="tooltip" [title]="skill.name" alt="skill.name" class="rounded" height="80px"
+            width="80px" (error)="test($event)">
+          <ng-template #skillThumbAvatar>
+            <avatar [name]="skill.name" [displayType]="'square'" size="80" data-toggle="tooltip" [title]="skill.name"></avatar>
+          </ng-template>
         </div>
-        <div class="col-12" *ngIf="sortedSkills || (sortedSkills && sortedSkills.length > 0)">
+        <div class="col-12" *ngIf="!(sortedSkills && sortedSkills.length > 0)">
           No skills added yet
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="col-lg-12 profile-menu p-5">
-  <a (click)="showSkillsDiv()" [ngClass]="{'menu-active': showSkills}">Skills</a> | 
+<div class="col-lg-12 profile-menu pt-5 px-5">
+  <a (click)="showSkillsDiv()" [ngClass]="{'menu-active': showSkills}">Skills</a> |
   <a (click)="showSkillSetDiv()" [ngClass]="{'menu-active': showSkillSet}">Skill Set</a>
+</div>
+<div class="col-lg-12 role px-5 mt-3">
+  <div class="role-name">
+      {{user.employee.role.roleName}}
+  </div>
 </div>
 <div class="col-lg-12 row skills">
   <app-skill-catalog *ngIf="showSkills"></app-skill-catalog>

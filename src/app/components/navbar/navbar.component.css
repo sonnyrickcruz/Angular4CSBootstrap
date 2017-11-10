@@ -33,6 +33,11 @@ a.nav-link{
     left: 0;
 }
 
+.nav-item .dropdown-item:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #03a9f4;
+}
 
 /* Side Nav */
 .side-nav-content {
