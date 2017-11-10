@@ -63,7 +63,7 @@
     </div>
     <div class="col-lg-12 row mx-auto empty-skill" *ngIf="skills == null || skills.length == 0">
       <div class="col-lg-12">
-        <img src="assets/Images/skill-catalog-empty-state.png" aria-hidden="true">
+        <img src="assets/Images/skill-catalog-empty-state.png" class="img-fluid" aria-hidden="true">
       </div>
       <div class="col-lg-12" *ngIf="activeMenu =='all'">
         <h4 *ngIf="searchStr != null && (skills == null || skills.length == 0)">No skill found!</h4>
@@ -94,7 +94,7 @@
       </nav>
     </div>
     <div class="col-lg-12 empty-skill" *ngIf="skillCatalogFlag && (skills != null || (skills != null && skills.length > 0))">
-      <img src="assets/Images/explore-skill.png" class="my-5" aria-hidden="true">
+      <img src="assets/Images/explore-skill.png" class="my-5 img-fluid" aria-hidden="true">
       <h5 class="my-3">Couldn't find what you're looking for?</h5>
       <button class="btn btn-primary px-4 mb-5">Suggest a skill</button>
     </div>

@@ -12,7 +12,7 @@
       <h4 class="business-group font-weight-light">{{user.employee.businessGroupObject.businessGroup}}</h4>
     </div>
   </div>
-  <div class="col-lg-12 p-5 my-4 row text-left">
+  <div class="col-lg-12 p-5 my-4 row text-left status">
     <div class="col-lg-8">
       <div class="col-lg-12">
         Skill Set Progress
@@ -45,11 +45,11 @@
         Top Skills
       </div>
       <div class="col-lg-12 card-group">
-        <div class="skill-div col-xs-4 m-2" *ngFor="let skill of sortedSkills">
-          <img *ngIf="getSkillThumbnail(skill.name);else skillThumbAvatar" [src]="getSkillThumbnail(skill.name)" data-toggle="tooltip" [title]="skill.name" alt="skill.name" class="rounded" height="80px"
+        <div class="skill-div col-xs-4 mx-auto" *ngFor="let skill of sortedSkills">
+          <img *ngIf="getSkillThumbnail(skill.name);else skillThumbAvatar" [src]="getSkillThumbnail(skill.name)" class="mx-auto" data-toggle="tooltip" [title]="skill.name" alt="skill.name" height="80px"
             width="80px" (error)="test($event)">
           <ng-template #skillThumbAvatar>
-            <avatar [name]="skill.name" [displayType]="'square'" size="80" data-toggle="tooltip" [title]="skill.name"></avatar>
+            <avatar [name]="skill.name" [displayType]="'square'" class="mx-auto" size="80" data-toggle="tooltip" [title]="skill.name"></avatar>
           </ng-template>
         </div>
         <div class="col-12" *ngIf="!(sortedSkills && sortedSkills.length > 0)">

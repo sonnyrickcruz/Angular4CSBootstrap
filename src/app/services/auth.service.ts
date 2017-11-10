@@ -6,9 +6,9 @@ import { SessionStorageService } from 'ngx-webstorage';
 export class AuthService {
   private static _authenticated = false;
   private static _user;
-  constructor(private _sessionStorage:SessionStorageService) {}
+  constructor(private _sessionStorage: SessionStorageService) { }
 
-  login(user:User) {
+  login(user: User) {
     if (user != null) {
       this._sessionStorage.store('user', user);
       this._sessionStorage.retrieve('user');

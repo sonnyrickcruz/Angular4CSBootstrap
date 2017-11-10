@@ -262,3 +262,37 @@ video {
     color: #fff;
     border-radius: 50%; 
 }
+
+/* Use important to override bootstrap */
+@media only screen and (max-width: 991px) {
+    .indemand-message { 
+        display: none 
+    }
+    .video {
+        display: none;
+    }
+
+    [class*="col-lg-12"] {
+        padding:0;
+        margin:0;
+        text-align: center
+    }
+    
+    .p-5 {
+        padding :0!important;
+    }
+    
+    .h-50 {
+        height: 10px!important;
+    }
+
+    .explore-img div {
+        background: #333333;
+        height: 10px;
+        margin: auto;
+        margin-left: 50px;
+        position: relative;
+        bottom: auto;
+        left: auto;
+    }
+}

@@ -130,6 +130,7 @@ export class SkillCatalogComponent implements OnInit {
         },
         (err) => {
           this.saveSkillMessage = this.errorMessage;
+          this._skillService.saveSkillLevel(this.skill.id, this.range, this.user.username, this.skill)
         }
       );
     }

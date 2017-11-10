@@ -37,9 +37,9 @@
 </nav>
 <nav class="nav side-nav-content flex-column d-xl-none d-lg-none mt-5 w-50 text-left" [ngClass]="{'d-none':!triggerNav}">
   <a href="javascript:void(0)" class="closebtn" (click)="burgerClick()">&times;</a>
-  <a [routerLink]="['profile']" (click)="burgerClick()">Profile</a>
-  <a [routerLink]="['home']" (click)="burgerClick()">Home</a>
-  <a [routerLink]="['skill-catalog']" (click)="burgerClick()">Skill Catalog</a>
-  <a [routerLink]="['explore']" (click)="burgerClick()">Explore</a>
+  <a [routerLinkActive]="['active-side']" [routerLink]="['profile']" (click)="burgerClick()">Profile</a>
+  <a [routerLinkActive]="['active-side']" [routerLink]="['home']" (click)="burgerClick()">Home</a>
+  <a [routerLinkActive]="['active-side']" [routerLink]="['skill-catalog']" (click)="burgerClick()">Skill Catalog</a>
+  <a [routerLinkActive]="['active-side']" [routerLink]="['explore']" (click)="burgerClick()">Explore</a>
   <a (click)="logout()" (click)="burgerClick()">Logout</a>
 </nav>

@@ -23,6 +23,11 @@ a.nav-link{
     border-bottom: 4px solid #03a9f4;
 }
 
+.active-side {
+    background-color: #03a9f4;
+    color: #fff;
+}
+
 .dropdown-menu {
     right: 0;
     left: auto;
