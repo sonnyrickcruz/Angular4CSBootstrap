@@ -1,31 +1,25 @@
-<div class="wrapper container-fluid col-12 p-5 text-center">
-  <div class="card col-xl-3 mx-auto mt-5 login-container">
-    <div class="card-body">
-      <div class="header-container pt-5">
-        <img class="img-fluid" [src]="logoIconUrl" alt="Keypoint Logo">
-      </div>
-      <div class="body-container">
-        <div class="alert alert-danger py-0 px-2 my-1 text-center" [ngClass]="{invisible: !invalidInput}" role="alert">
-          {{message}}
-        </div>
-        <form>
-          <div class="input-group mb-3 pt-1">
-            <div class="input-group-addon">
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </div>
-            <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" placeholder="Username">
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-addon">
-              <i class="fa fa-lock" aria-hidden="true"></i>
-            </div>
-            <input type="password" class="form-control" id="password" (change)="login()" [(ngModel)]="password" name="password" placeholder="Password">
-          </div>
-          <div class="form-group mt-3">
-            <button type="button" class="btn btn-primary login-submit-btn" (click)="login()">Login</button>
-          </div>
-        </form>
-      </div>
+<div class="wrapper">
+  <mat-card class="login-card">
+    <div class="login-logo">
+      <img [src]="logoIconUrl" alt="Keypoint Logo">
     </div>
-  </div>
+    <mat-card-content>
+      <mat-error *ngIf="invalidInput">
+        {{message}}
+      </mat-error>
+      <mat-form-field>
+        <input matInput placeholder="Username" [(ngModel)]="username"  name="username" required>
+        <mat-error *ngIf="input.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" [(ngModel)]="password" name="password" [type]="hide ? 'text' : 'password'" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="input.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <div class="login-btn">
+          <mat-spinner [diameter]="25" strokeWidth="1" *ngIf="loading"></mat-spinner>
+          <button mat-raised-button color="primary"   (click)="login()">LOGIN</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

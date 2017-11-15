@@ -13,6 +13,16 @@ import { AvatarModule } from "ng2-avatar";
 import { HttpModule } from '@angular/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { RatingModule } from "ngx-rating";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, 
+  MatCheckboxModule, 
+  MatCardModule, 
+  MatFormFieldModule, 
+  MatInputModule,
+  MatIconModule,
+  MatProgressSpinnerModule,
+  MatToolbarModule,
+  MatSidenavModule, MatMenuModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -54,7 +64,18 @@ const appRoutes: Routes = [
     AvatarModule.forRoot(),
     HttpModule,
     Ng2Webstorage,
-    RatingModule
+    RatingModule,
+    BrowserAnimationsModule,
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatCardModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatIconModule, 
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatMenuModule
   ],
   providers: [
     SkillService,

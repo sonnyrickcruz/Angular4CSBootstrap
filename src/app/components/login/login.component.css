@@ -1,5 +1,6 @@
 .wrapper {
     position: absolute;
+    width: 100%;
     height: 100%;
     background-repeat: repeat;
     background-position: 100% 100%;
@@ -7,14 +8,46 @@
     background-image: url('../../../assets/Images/login-bg.png')
 }
 
-.login-container {
-    box-shadow: 3px 5px 15px #464646;
-}
-
-.input-group-addon > i {
-    width: 15px;
-}
-
-.login-submit-btn {
+/**MATERIAL*/
+.mat-form-field {
     width: 100%;
+}
+
+.login-card {
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.login-logo {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.login-btn {
+    width: 100%;
+    text-align: right;
+}
+
+mat-spinner {
+    display: inline-block;
+    padding: auto;
+    margin: auto;
+}
+
+.mat-card-content {
+    z-index: 1;
+}
+
+@media only screen and (max-width: 720px) {
+    .login-card {
+        width: 90%;
+    }
 }

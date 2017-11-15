@@ -1,79 +1,66 @@
-.navbar {
-    box-shadow: 0 4px 15px -3px gray;
-    padding: 0 50px;
-    height: 60px;
+/* Angular Material */
+.example-fill-remaining-space {
+    flex: 1 1 auto;
 }
 
-.navbar-collapse {
-    height: 100%;
-    margin-left: 20px;
+mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.navbar-collapse > ul {
-    height: 100%;
+mat-toolbar button {
+    font-weight: normal;
+    margin: 5px;
 }
 
-a.nav-link{
-    height: 100%;
-    padding: 15px 0;
+mat-toolbar button.mat-active {
+    font-weight: bold;
+}
+
+.nav-profile-img {
     margin: 0 5px;
 }
 
-.active {
-    border-bottom: 4px solid #03a9f4;
-}
-
-.active-side {
-    background-color: #03a9f4;
-    color: #fff;
-}
-
-.dropdown-menu {
-    right: 0;
-    left: auto;
-}
-
-.burger {
-    position: absolute;
-    left: 0;
-}
-
-.nav-item .dropdown-item:hover {
-    cursor: pointer;
-    color: #fff;
-    background-color: #03a9f4;
-}
-
-/* Side Nav */
-.side-nav-content {
+mat-sidenav-container {
     height: 100%;
-    width: 0;
+    width: 100%;
+    background: transparent;
     position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    overflow-x: hidden;
-    padding-top: 60px;
 }
 
-.side-nav-content a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #4e4e4e;
+mat-sidenav button {
     display: block;
-    transition: 0.3s;
+    width: 100%;
+    text-align: left;
+    font-weight: normal;
+    z-index: 1;
 }
 
-.side-nav-content a:hover {
-    color: #a5a4a4;
+.mat-drawer-opened {
+    z-index: 2;
 }
 
-.side-nav-content .closebtn {
-    position: absolute;
-    top: 0;
-    right: 15px;
-    font-size: 36px;
-    margin-left: 50px;
+mat-sidenav button.mat-active {
+    font-weight: bold;
+}
+
+.sidenav-menu-btn {
+    display: none;
+    background: #f5f5f5;
+    color: #000;
+}
+
+.sidenav-menu-btn:hover {
+    background: #d7d7d7;
+}
+
+@media only screen and (max-width: 700px) {
+    mat-toolbar .nav-item {
+        display: none;
+    }
+
+    .sidenav-menu-btn {
+        display: inline-block;
+    }
 }
