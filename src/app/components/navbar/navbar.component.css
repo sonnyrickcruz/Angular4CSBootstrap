@@ -27,6 +27,7 @@ mat-sidenav-container {
     width: 100%;
     background: transparent;
     position: fixed;
+    z-index: 0;
 }
 
 mat-sidenav button {
